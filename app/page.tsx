@@ -3,6 +3,7 @@ import { lusitana } from '@/app/ui/fonts';
 export default function Page() {
   return (
     <div className="flex flex-col h-screen">
+
       <div className="flex flex-0 justify-center items-center bg-stone-100 h-16">
         <div className="flex container-center items-center px-0 font-bold text-stone-500 text-sm font-mono">
           <a className="font-bold text-stone-700" href="/">nqcdan.rocks</a>
@@ -26,6 +27,7 @@ export default function Page() {
           <div className="font-normal"><a href="/rss.xml">📮 RSS</a></div>
         </div>
       </div>
+
     </div>
   );
 }
