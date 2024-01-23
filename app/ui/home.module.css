@@ -9,3 +9,9 @@
 .animate-blink {
   animation: blink 1s infinite;
 }
+
+/* GRID */
+.limit {
+  max-width: 992px;
+  margin: auto;
+}
