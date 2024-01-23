@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { lusitana } from '@/app/ui/fonts';
 
 export default function Page() {
@@ -7,7 +8,7 @@ export default function Page() {
       <header className="flex flex-0 bg-stone-100 h-16">
         <div className='limit w-full'>
           <div className="flex items-center justify-start px-2 font-bold text-stone-500 text-sm font-mono">
-            <a className="font-bold text-stone-700" href="/">nqcdan.rocks</a>
+            <Link className="font-bold text-stone-700" href="/">nqcdan.rocks</Link>
             <span className="text-stone-500 inline-block animate-blink">▮</span>
           </div>
         </div>
@@ -21,13 +22,13 @@ export default function Page() {
 
           <ol className='m-1 text-left'>
             <li className='my-1'>
-              <a className="font-bold" href="/everyday">Everyday Learning</a>: <i>Writing about what I learned everyday</i>
+              <Link className="font-bold" href="/everyday">Everyday Learning</Link>: <i>Writing about what I learned everyday</i>
             </li>
             <li className='my-1'>
-              <a className="font-bold" href="/dev">Coding</a>: <i>My journey to build a programming language skill!!</i>
+              <Link className="font-bold" href="/dev">Coding</Link>: <i>My journey to build a programming language skill!!</i>
             </li>
             <li className='my-1'>
-              <a className="font-bold" href="/looking-back">Looking Back</a>: <i>...</i>
+              <Link className="font-bold" href="/looking-back">Looking Back</Link>: <i>...</i>
             </li>
           </ol>
 
