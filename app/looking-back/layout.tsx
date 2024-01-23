@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Looking Back',
+  title: 'looking-back',
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
