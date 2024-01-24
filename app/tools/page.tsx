@@ -1,7 +1,7 @@
-import { Metadata } from 'next';
+import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'everyday',
+  title: 'tools',
 };
 
 export default function Page() {

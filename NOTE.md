@@ -17,3 +17,5 @@
 
 ### Streaming a component?
 - Suspense allows you to defer rendering parts of your app until some condition is met.
+
+
