@@ -11,13 +11,6 @@ export default function Page() {
       <p className='my-5 text-gray-600'>
         I keep a development log for some of the project I'm working on, you can find them here:
       </p>
-      <ol className='list-decimal pl-4 my-4'>
-        <li>Vấn đề cần giải quyết là gì? </li>
-        <li>Chia nhỏ vấn đề thành các phần nhỏ hơn. </li>
-        <li>Thứ tự ưu tiêu giải quyết các phần. Làm nghiên cứu nếu cần thiết. </li>
-        <li>Làm việc để giải quyết từng phần một. Không phiền nhiễu, loại bỏ những phần không cần thiết. </li>
-        <li>Optimize. Document. </li>
-      </ol>
     </div>
   );
 }

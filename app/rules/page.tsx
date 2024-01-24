@@ -14,7 +14,6 @@ export default function Page() {
           src="/images/woodcuts_5.jpg"
           width={1500}
           height={987}
-          className='hidden md:block'
           alt="Wood cut" />
       </div>
 
