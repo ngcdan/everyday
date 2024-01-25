@@ -82,6 +82,10 @@ export default function Page() {
       <section className='my-5'>
         <h3 className='text-xl font-bold'>Notes</h3>
         <ul className='list-disc pl-5'>
+          <li className='mb-2'>Kỷ luật không phải là ý chí, sức mạnh. Mà là loại bỏ sự phiền nhiễu xung quanh bản thân, những thứ khiến bản thân phân tâm.
+            Khi m không có khả năng làm bất cứ điều gì khác, sự chú ý của m sẽ tự nhiên tập trung vào một thứ có sẵn cho m lúc đó.{' '}
+            <strong>M làm việc khi không có gì tốt hơn để làm.</strong>
+          </li>
           <li className='mb-2'>Đàn ông tìm thấy niềm vui trong việc tạo ra giá trị. Họ có khao khát được tạo dựng, sáng chế, phát triển và cải tiến.</li>
           <li className='mb-2'>
             Bộ não không phải để nắm giữ thông tin, chúng là để suy nghĩ.
@@ -133,7 +137,75 @@ export default function Page() {
               </li>
             </ol>
           </li>
+          <li className="mb-2">
+            Đừng ngại bất cứ việc gì, hãy cứ xông pha, bắt tay vào làm và đừng chờ đợi gì cả. Tuổi trẻ cứ việc làm sai thoải mái, {' '}
+            quan trọng là khi làm công việc gì đó mình được trải nghiệm cái sai, cái đúng một cách thực tế sẽ trao dồi bản thân rất nhanh. {' '}
+            Trong tình cảm cũng thế, thích aia cứ nói, cứ đến gặp được hay không chả vấn đề gì. Cuộc đời này rộng lớn vô tận, nên cái sai của mình chả ai nhớ đến đâu.
+          </li>
+          <li className='mb-2'>
+            Mình phải cộng nhận mình trước rồi ngta mới công nhận mình. {' '}
+            Chỉ có làm ở cấp dưới, làm ở dưới thì ngta mới cạnh tranh nhau, còn làm ở cấp cao hơn thì ngta k cạnh tranh nhau mà giúp đỡ nhau.{' '}
+            <i>Đồng cảm với người kém hơn mình thì dễ, những vỗ tay cho những người hơn mình mới là chuyện khó.</i>
+          </li>
+          <li className='mb-2'>
+            Không đưa ra quyết định khi đói, vì năng lượng cơ thể đang thấp, hệ thống tư duy chậm sẽ lười biếng hơn. {' '}
+            Rất dễ hành động liều lĩnh, hành động thoe chế độ lái tự động. Cốt lõi để kiểm soát hệ thống 1, và điều động {' '}
+            hệ thống 2, đó là làm chậm quá trình suy nghĩ.
+          </li>
+          <li className='mb-2'>
+            Hầu hết chung ta nhìn nhận những sai lầm của người khác dễ hơn nhìn nhận thấy những sai sót của bản thân. {' '}
+            Vì vậy, hãy lắng nghe, đón nhận ý kiến của người khác.
+          </li>
+          <li className='mb-2'>
+            Kỹ năng quan trọng là thể hiện suy nghĩ của mình, diễn dãi suy của mình với người khác. Bên cạnh đó cũng là {' '}
+            việc nghe và sử lý thông tin người khác đưa cho mình. Khi đi làm sẽ quan trọng hơn nữa, vì mọi người phải {' '}
+            làm việc với những kỹ sư phân mềm khác hoặc với những người với những vị trí khác trong công ty. {' '}
+            Mọi người có rất nhiều thông tin và mỗi người lại có những thông tin khác nhau, và thực sự thì mọi {' '}
+            người cũng chỉ cố gắng để hiểu thêm vấn đề thôi.
+          </li>
+          <li className='mb-2'>
+            Mục đích của thói quan là giải quyết các vấn đề trong cuộc sống với ít năng lượng và nổ lực nhất có thể.
+          </li>
         </ul>
+      </section>
+
+
+      <section className='my-5'>
+        <h3 className='text-xl font-bold'>References</h3>
+        <ul className='list-disc pl-5'>
+          <li className='mb-2'>
+            <i>
+              Trải qua nhiều chuyện như vậy có phải sẽ có cảm giác mạnh mẽ cứng cáp, đôi chút tự hào và tự tin hơn không? {' '}
+              Như kiểu "Oài, tôi đã làm tốt đấy chứ" hoặc là "có chuyện gì mà tôi chưa từng trải qua đâu, tôi đã có nhiều kinh nghiệm rồi."{' '}
+              Dù sao thì tôi vẫn nghĩ cuộc đời khá công bằng, ngày mưa ngày nắng không thể tránh được, {' '}
+              nếu như hôm nay cuộc đời đổ mưa với bạn thì cũng lạc quan lên, mưa mãi rồi cũng phải nắng thoi, có khi là ngay sáng mai kìa {' '}
+              Và nếu bạn đang trong những tháng ngày rực rõ thì cũng đừng quên mang đồ ra giặt, vì biết đâu lại chuẩn bị mưa cnm cả tháng đấy {' '}
+              Cuộc đời là thế, nên biết trân trọng những gì đang có và có "khoản dự bị" cho trường hợp xấu trong tương lai,{' '}
+              Đừng quá bế tắc nếu chẳng mau đang ở giai đoạn khó khăn mệt mỏi, "chỉ cần bạn sống tốt, trời xanh khắn an bài". {' '}
+              Nếu không thì rõ ràng cuộc đời bất công với bạn rồi, tôi thì chỉ sợ mình nợ người khác thôi, kẻ khác nợ tôi, kẻ đó lo.{' '}
+              Cố lên nhé!
+            </i>
+          </li>
+          <li className="mb-2 italic">
+            Ai cũng đều rất nhạy cảm, người nói có thể không nhận ra, chứ người nghe không bao giờ cảm nhận "nhầm". {' '}
+            Chúng ta vẫn không nên để cảm xúc tiêu cực trở thành lời nói như vết dao cứa vào tim nhau.
+          </li>
+          <li className='mb-2 italic' >
+            <strong>Không có một xã hội dựa trên kiến thức | Chúng ta có một xã hội dựa trên kỹ năng.</strong>
+            Mọi người không quan tâm những gì bạn biết, họ quan tâm những gì bạn có thể làm. {' '}
+            Có kiến thức là không đủ. Biết cách sử dụng nó, cho dù là kiến thức của riêng bạn hay của người khác, là tất cả.
+          </li>
+          <li className='mb-2 italic'>
+            <strong className="block">Bất kể chúng ta đang nói gì cũng để người khác có cảm giác bị hạ thấp</strong>
+            Chia sẽ thanh công của mình với người khác, luôn luôn tự nhắc nhở mình không được quá tự cao, phải biết coi {' '}
+            trọng sự hợp tác, hiểu được rằng "nhiều người kiếm củi thì mới đốt được đống lửa to". {' '}
+            Làm như thế, những vinh quan mà chúng ta đạt được mới có tác dụng, vừa có lợi cho sự nghiệp vừa giữ được {' '}
+            mối quan hệ tốt với người khác. Cũng giống như các ngôi sao khi lên nhận giải thưởng đều sẽ cảm ơn rất nhiều {' '}
+            người, cái kiểu ân nghĩa đầu môi chót lưỡi này tuy rằng không có thật, nhưng người nghe sẽ cảm thấy rất vui{' '}
+            tự nhiên sẽ có hảo cảm với chúng ta hơn rất nhiều.
+          </li>
+        </ul>
+
 
 
       </section>
@@ -147,6 +219,9 @@ export default function Page() {
           height={440}
           className='pl-2'
           alt="Keep it simple, stupid" />
+        <p className='italic'>
+          Người ta không tích luỹ mà loại trừ. Mọi thứ không tăng lên mà giảm đi mỗi ngày. Đỉnh cao của sự tu dưỡng chính là sự đơn giản.
+        </p>
       </section>
     </div>
   );
