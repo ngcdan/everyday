@@ -25,15 +25,9 @@ export default function Page() {
             ensuring a well-organized and purposeful approach to various aspects of my journey.
           </p>
         </li>
-
         <li className='mb-2'>
           <Link className={`font-bold ${lusitana.className} antialiased`} href="/everyday"> Everyday</Link>: <i>Writing about what I learn everyday.</i>
         </li>
-
-        <li className='mb-2'>
-          <Link className={`font-bold ${lusitana.className} antialiased`} href="/dev">Coding</Link>: <i>My journey to build programming language skill!!</i>
-        </li>
-
         <li className='mb-2'>
           <Link className={`font-bold ${lusitana.className} antialiased`} href="/tools">Tools</Link>: <i>All the tools I use.</i>
         </li>
