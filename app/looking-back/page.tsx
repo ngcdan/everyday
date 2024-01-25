@@ -23,7 +23,7 @@ export default function Page() {
             width={2040}
             height={1530}
             alt="Tet 1" />
-          <figcaption>Không khí trước Tết</figcaption>
+          <figcaption>Không khí trước Tết ở quê</figcaption>
         </figure>
 
         <figure className='my-2 px-4 py-4 bg-gray-100 rounded-md shadow-md'>
