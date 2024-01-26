@@ -24,16 +24,19 @@ export default function Page() {
               src="/images/2024/jan/BEE_T7_YEP.jpg"
               width={2568}
               height={1926}
+              className='rounded-md shadow-md p-1'
               alt="OF1 YEP" />
             <Image
               src="/images/2024/jan/BEE_T7_YEP_1.jpg"
               width={2056}
               height={1182}
+              className='rounded-md shadow-md p-1'
               alt="OF1 YEP" />
             <Image
               src="/images/2024/jan/BEE_T7_YEP_2.jpg"
               width={2560}
               height={1440}
+              className='rounded-md shadow-md p-1'
               alt="OF1 YEP" />
           </div>
 
@@ -42,6 +45,7 @@ export default function Page() {
               src="/images/wine_2.jpg"
               width={2040}
               height={1530}
+              className='rounded-md shadow-md p-1'
               alt="Tet 1" />
             <figcaption>Không khí trước Tết ở quê</figcaption>
           </figure>
