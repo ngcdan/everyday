@@ -26,3 +26,10 @@ input[type='number']::-webkit-outer-spin-button {
   max-width: 992px;
   margin: auto;
 }
+
+p,
+table,
+ol,
+ul {
+  margin-bottom: 1.2em
+}
