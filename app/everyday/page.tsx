@@ -18,7 +18,9 @@ export default function Page() {
         <h2 className='font-bold text-xl'>I. Recently Added</h2>
         <div>
           <p className='mt-3'>
-            <span className={`font-bold ${lusitana.className} antialiased px-5 text-gray-600`}>2024.01.29</span>
+            <span className={`block md:inline-block font-bold mr-4 ${lusitana.className} antialiased text-gray-600`}>
+              2024.01.29
+            </span>
             <Link href="everyday/reading/cultivate-an-inclination-towards-resistance-and-pain">
               Reading - Cultivate an inclination towards resistance and pain.
             </Link>

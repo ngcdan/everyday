@@ -12,7 +12,7 @@ export default function Layout({ children, }: { children: React.ReactNode }) {
         <span className="arrow pull-back font-mono text-stone-500 text-sm px-1">←</span>
         <Link className="font-mono text-stone-500 text-sm" href="/everyday">All posts</Link>
       </p>
-      <main className='my-5 px-2'>
+      <main className='my-5 px-3'>
         {children}
       </main>
     </div>
