@@ -76,6 +76,7 @@ export default function Page() {
           </li>
           <li className="mb-2">Những thứ có giá trị nhất là những thứ đang có ở hiện tại.</li>
           <li className="mb-2">Gắn bó với những gì người khác nghĩ về bạn sẽ cướp đi tiềm năng của bạn.</li>
+          <li className="mb-2">Kế hoạch cho sự thất bại, học cách sống với ngân sách càng nhỏ càng tốt..</li>
         </ol>
       </section>
 
@@ -166,6 +167,35 @@ export default function Page() {
           <li className='mb-2'>
             Mục đích của thói quan là giải quyết các vấn đề trong cuộc sống với ít năng lượng và nổ lực nhất có thể.
           </li>
+          <li className='mb-2'>
+            Các mối quan hệ bạn xây dựng cuối cùng sẽ là những mối quan hệ giúp bạn có được việc làm.
+          </li>
+          <li className='mb-2'>
+            Trên thực tế, bạn không cần phải nghĩ ra ý tưởng cho một ứng dụng. Chỉ cần tạo một dự án để kiểm tra một kỹ năng mà bạn đang cố gắng học.
+          </li>
+          <li className='mb-2'>
+            Kết nối hiệu quả với mọi người và hoà nhập bản thân vào cộng đồng.
+          </li>
+          <li className='mb-2'>
+            Phát triển kỹ năng bán hàng, xây dựng mạng lưới, sau đó cố gắng kiếm một công việc thực sự.
+          </li>
+          <li className='mb-2'>
+            Những câu chuyện cá nhân nên tập trung vào chủ để, không phải bản thân mày.
+          </li>
+          <li className='mb-2'>
+            Sự nghiệp và đam mê phải được đặt lên hàng đầu, rồi tới sau mới là bản thân và {' '}
+            những nhu cầu thiết yếu cơ bản cho cuộc sống hằng ngày để duy trì đam mê, thứ 3 đến cha mẹ, cuối cùng mới là phụ nữ.
+          </li>
+          <li className='mb-2'>
+            Cách cơ bản nhất để xác định xem hoạt động đó là vô bổ hay có ý nghĩa là hãy tự chất vấn bản thân {' '}
+            “Liệu việc tôi làm có giúp tôi thực hiện được mục tiêu của mình không?”
+          </li>
+
+          <li className='mb-2'>
+            Không bao giờ có sự lựa chọn đúng nhất, mình phải lựa chọn và sau đó làm cho lựa chọn của mình là đúng nhất. {' '}
+            Bỏ tất cả tâm sức vào để chắc chắn sự lựa chọn của mình là đúng đắn. {' '}
+            Nếu như em cứ mãi mê bước tiếp theo này có đúng hay không? thì cuối cùng em chả làm gì cả vì em quá sợ.
+          </li>
         </ul>
       </section>
 
@@ -189,6 +219,11 @@ export default function Page() {
           <li className="mb-2 italic">
             Ai cũng đều rất nhạy cảm, người nói có thể không nhận ra, chứ người nghe không bao giờ cảm nhận "nhầm". {' '}
             Chúng ta vẫn không nên để cảm xúc tiêu cực trở thành lời nói như vết dao cứa vào tim nhau.
+          </li>
+          <li className="mb-2 italic">
+            Giống như quả bóng tennis, khi đánh càng mạnh xuống thì nó càng nẩy lên cao. Nó có tính đàn hồi. {' '}
+            Giống như bản thân em với cuộc sống vậy, khi em va chạm càng nhiều, thử thách bản thân càng nhiều, {' '}
+            như thế thì cơ hội mở ra cũng càng nhiều, cũng sẽ bồi đắp kỹ năng, kiến thức, trải nghiệm bản thân
           </li>
           <li className='mb-2 italic' >
             <strong>Không có một xã hội dựa trên kiến thức | Chúng ta có một xã hội dựa trên kỹ năng.</strong>
