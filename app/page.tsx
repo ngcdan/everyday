@@ -26,6 +26,9 @@ export default function Page() {
           </p>
         </li>
         <li className='mb-2'>
+          <Link className={`font-bold ${lusitana.className} antialiased`} href="/text-editor"> Text Editor</Link>: <i>Try to building Rich Text Editor</i>
+        </li>
+        <li className='mb-2'>
           <Link className={`font-bold ${lusitana.className} antialiased`} href="/everyday"> Everyday</Link>: <i>Writing about what I learn everyday.</i>
         </li>
         <li className='mb-2'>
