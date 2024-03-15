@@ -1,5 +1,5 @@
-import '@/app/ui/global.css'
-import { inter } from '@/app/ui/fonts'
+import '@/app/ui/global.css';
+import { inter } from '@/app/ui/fonts';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -7,8 +7,7 @@ export const metadata: Metadata = {
     template: '%s | Le Ngoc Dan',
     default: 'Le Ngoc Dan',
   },
-  description: 'The official Next.js Course Dashboard, built with App Router.',
-  metadataBase: new URL('https://next-learn-dashboard.vercel.sh'),
+  description: '',
 };
 
 export default function RootLayout({
@@ -19,29 +18,39 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-        <div className="flex flex-col h-screen">
+        <div className="flex h-screen flex-col">
           {/* Header */}
-          <header className="flex flex-0 bg-stone-100 h-16">
-            <div className='limit w-full'>
-              <div className="flex items-center justify-start px-2 font-bold text-stone-500 text-sm font-mono">
-                <a className="font-bold text-stone-700" href="/">nqcdan.rocks</a>
-                <span className="text-stone-500 inline-block animate-blink">▮</span>
+          <header className="flex-0 flex h-16 bg-stone-100">
+            <div className="limit w-full">
+              <div className="flex items-center justify-start px-2 font-mono text-sm font-bold text-stone-500">
+                <a className="font-bold text-stone-700" href="/">
+                  nqcdan.rocks
+                </a>
+                <span className="animate-blink inline-block text-stone-500">
+                  ▮
+                </span>
               </div>
             </div>
           </header>
 
           {/* Main */}
-          <main className='flex flex-col flex-1 limit w-full no-list my-10 overflow-y-auto'>
+          <main className="limit no-list my-10 flex w-full flex-1 flex-col overflow-y-auto">
             {children}
           </main>
 
           {/* Footer */}
-          <footer className="flex flex-0  bg-stone-100 h-16">
+          <footer className="flex-0 flex  h-16 bg-stone-100">
             <div className="limit w-full">
-              <div className="flex justify-between px-2 font-bold text-stone-500 text-sm font-mono">
-                <p><a rel="me" href="https://masto.ai/@linuss1908@gmail.com">🐘 @dan</a></p>
+              <div className="flex justify-between px-2 font-mono text-sm font-bold text-stone-500">
+                <p>
+                  <a rel="me" href="https://masto.ai/@linuss1908@gmail.com">
+                    🐘 @dan
+                  </a>
+                </p>
                 <div className="flex-1"></div>
-                <div className="font-normal"><a href="/rss.xml">📮 RSS</a></div>
+                <div className="font-normal">
+                  <a href="/rss.xml">📮 RSS</a>
+                </div>
               </div>
             </div>
           </footer>
