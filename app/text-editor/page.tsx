@@ -14,7 +14,7 @@ export default function Page() {
       <p className="my-5 text-gray-600">
         Try to building Rich Text Editor with Lexical
       </p>
-      <div className="my-8 mx-5">
+      <div className="my-8 md:mx-5">
         <Editor />
       </div>
     </div>
