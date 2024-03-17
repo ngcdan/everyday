@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Editor } from '../ui/components/Editor';
+import { Editor } from '../../components/ui/components/Editor';
 
 export const metadata: Metadata = {
   title: 'Text Editor',
@@ -14,7 +14,7 @@ export default function Page() {
       <p className="my-5 text-gray-600">
         Try to building Rich Text Editor with Lexical
       </p>
-      <div className="flex w-full">
+      <div className="my-8 mx-5">
         <Editor />
       </div>
     </div>

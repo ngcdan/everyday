@@ -9,8 +9,8 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-inter)'],
-        mono: ['var(--font-lusitana)'],
+        sans: ['var(--font-poppins)'],
+        mono: ['var(--font-merriweather)'],
       },
       gridTemplateColumns: {
         '13': 'repeat(13, minmax(0, 1fr))',

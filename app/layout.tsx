@@ -1,5 +1,5 @@
-import '@/app/ui/global.css';
-import { inter } from '@/app/ui/fonts';
+import '@/components/ui/global.css';
+import { poppins } from '@/components/ui/fonts';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -17,19 +17,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${poppins.className} antialiased`}>
         <div className="flex h-screen flex-col">
           {/* Header */}
-          <header className="flex-0 flex h-16 bg-stone-100">
-            <div className="limit w-full">
-              <div className="flex items-center justify-start px-2 font-mono text-sm font-bold text-stone-500">
-                <a className="font-bold text-stone-700" href="/">
-                  nqcdan.rocks
-                </a>
-                <span className="animate-blink inline-block text-stone-500">
-                  ▮
-                </span>
-              </div>
+          <header className="flex-0 flex h-16 bg-stone-100 text-stone-700">
+            <div className="limit w-full flex items-center justify-start px-2 font-mono text-md">
+              <a className="" href="/">
+                nqcdan.rocks
+              </a>
             </div>
           </header>
 
@@ -39,19 +34,10 @@ export default function RootLayout({
           </main>
 
           {/* Footer */}
-          <footer className="flex-0 flex  h-16 bg-stone-100">
-            <div className="limit w-full">
-              <div className="flex justify-between px-2 font-mono text-sm font-bold text-stone-500">
-                <p>
-                  <a rel="me" href="https://masto.ai/@linuss1908@gmail.com">
-                    🐘 @dan
-                  </a>
-                </p>
-                <div className="flex-1"></div>
-                <div className="font-normal">
-                  <a href="/rss.xml">📮 RSS</a>
-                </div>
-              </div>
+          <footer className="flex-0 flex h-16 bg-stone-100 text-md text-stone-700 font-mono">
+            <div className="limit w-full flex justify-between">
+              <a rel="me" target="_blank" href="mailto:linuss1908@gmail.com">🐘 @dan</a>
+              <a href="/rss.xml">📮 RSS</a>
             </div>
           </footer>
         </div>

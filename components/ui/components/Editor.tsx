@@ -30,11 +30,12 @@ const editorConfig = {
 export function Editor() {
   return (
     <LexicalComposer initialConfig={editorConfig}>
-      <div className="editor-container">
+      <div className="flex flex-col w-full h-80 border">
         <ToolbarPlugin />
-        <div className="editor-inner">
+        <div className="grow min-h-80 relative border-t">
           <RichTextPlugin
-            contentEditable={<ContentEditable className="editor-input" />}
+            contentEditable={<ContentEditable className="resize-none caret-[#444] py-4 px-3 h-40"
+              style={{ tabSize: 1, outline: 0 }} />}
             placeholder={<Placeholder />}
             ErrorBoundary={LexicalErrorBoundary}
           />
