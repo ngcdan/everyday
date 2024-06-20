@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import { HouseCalculator } from './HouseCalculator';
 
 export const metadata: Metadata = {
   title: 'tools',
@@ -11,6 +12,9 @@ export default function Page() {
       <p className='my-5 text-gray-600'>
         All the tools I use.
       </p>
+      <div className='my-8' >
+        <HouseCalculator />
+      </div>
     </div>
   );
 }
