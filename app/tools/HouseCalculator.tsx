@@ -95,7 +95,7 @@ export class HouseCalculator extends React.Component<{}, State> {
         <h2 className='text-center text-2xl font-bold text-gray-800 my-2'>House Calculator</h2>
         <form onSubmit={this.handleSubmit} className='bg-white p-6 rounded-lg shadow-lg'>
           <div className='mb-4 columns-2'>
-            <label className='block mb-2 text-gray-600'>Total Electricity Usage:</label>
+            <label className='block mb-2 text-gray-600'>Electricity Usage:</label>
             <input
               type='number'
               value={this.state.electricityUsage}
@@ -112,7 +112,7 @@ export class HouseCalculator extends React.Component<{}, State> {
           </div>
 
           <div className='mb-4 columns-2'>
-            <label className='block mb-2 text-gray-600'>Total Water Usage:</label>
+            <label className='block mb-2 text-gray-600'>Water Usage:</label>
             <input
               type='number'
               value={this.state.waterUsage}
