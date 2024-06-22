@@ -8,6 +8,10 @@ interface MonthData {
   electricity: number;
   water: number;
   total: number;
+  electricityUsage: number;
+  electricityFactor: number;
+  waterUsage: number;
+  waterFactor: number;
 }
 
 interface State {
@@ -23,7 +27,6 @@ interface State {
 export class HouseCalculator extends React.Component<{}, State> {
   constructor(props: {}) {
     super(props);
-
     const currentYear = new Date().getFullYear();
     const initialMonthsData: MonthData[] = [...Array(12).keys()].map(i => ({
       month: new Date(currentYear, i).toLocaleString('default', { month: '2-digit', year: 'numeric' }),
@@ -31,6 +34,10 @@ export class HouseCalculator extends React.Component<{}, State> {
       electricity: 0,
       water: 0,
       total: 1500000,
+      electricityUsage: 0,
+      electricityFactor: 3300,
+      waterUsage: 0,
+      waterFactor: 15000,
     }));
 
     this.state = {
@@ -41,6 +48,21 @@ export class HouseCalculator extends React.Component<{}, State> {
       submitted: false,
       monthsData: initialMonthsData,
     };
+  }
+
+  componentDidMount() {
+    // get data from Local Storage and update state
+    const savedData = localStorage.getItem('monthsData');
+    if (savedData) {
+      this.setState({ monthsData: JSON.parse(savedData) });
+    }
+  }
+
+  componentDidUpdate(_prevProps: {}, prevState: State) {
+    // Update data to Local Storage when the state has change
+    if (prevState.monthsData !== this.state.monthsData) {
+      localStorage.setItem('monthsData', JSON.stringify(this.state.monthsData));
+    }
   }
 
   handleElectricityChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -71,12 +93,36 @@ export class HouseCalculator extends React.Component<{}, State> {
         const electricity = this.state.electricityUsage * this.state.electricityFactor; // Calculate electricity bill
         const water = this.state.waterUsage * this.state.waterFactor; // Calculate water bill
         const total = rent + electricity + water; // Calculate total cost
-        return { ...data, rent, electricity, water, total };
+        return {
+          ...data,
+          rent, electricity, water, total,
+          electricityUsage: this.state.electricityUsage,
+          electricityFactor: this.state.electricityFactor,
+          waterUsage: this.state.waterUsage,
+          waterFactor: this.state.waterFactor,
+        };
       }
       return data;
     });
 
     this.setState({ monthsData: updatedMonthsData, submitted: true });
+  };
+
+  handleClearData = () => {
+    localStorage.removeItem('monthsData');
+    const currentYear = new Date().getFullYear();
+    const initialMonthsData: MonthData[] = [...Array(12).keys()].map(i => ({
+      month: new Date(currentYear, i).toLocaleString('default', { month: '2-digit', year: 'numeric' }),
+      rent: 1500000, // Fixed house rent
+      electricity: 0,
+      water: 0,
+      total: 1500000,
+      electricityUsage: 0,
+      electricityFactor: 3300,
+      waterUsage: 0,
+      waterFactor: 15000,
+    }));
+    this.setState({ monthsData: initialMonthsData });
   };
 
   formatCurrency = (value: number) => {
@@ -92,7 +138,7 @@ export class HouseCalculator extends React.Component<{}, State> {
 
     return (
       <div className='container border-t border-gray-200'>
-        <h2 className='text-center text-2xl font-bold text-gray-800 my-2'>House Calculator</h2>
+        <h2 className='text-center text-2xl font-bold text-gray-800 my-2'>House Rent Calculator</h2>
         <form onSubmit={this.handleSubmit} className='bg-white p-6 rounded-lg shadow-lg'>
           <div className='mb-4 columns-2'>
             <label className='block mb-2 text-gray-600'>Electricity Usage:</label>
@@ -128,6 +174,7 @@ export class HouseCalculator extends React.Component<{}, State> {
             />
           </div>
           <button type='submit' className='w-full px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600'>Submit</button>
+          <button type='button' onClick={this.handleClearData} className='w-full mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600'>Clear Data</button>
 
         </form>
         <div className='mt-8 overflow-x-auto'>
@@ -146,8 +193,30 @@ export class HouseCalculator extends React.Component<{}, State> {
                 <tr key={index} className={index === currentMonth ? 'bg-yellow-100' : 'hover:bg-gray-100'}>
                   <td className='py-3 px-6 border-b border-gray-200 text-gray-700'>{data.month}</td>
                   <td className='py-3 px-6 border-b border-gray-200 text-gray-700'>{this.formatCurrency(data.rent)}</td>
-                  <td className='py-3 px-6 border-b border-gray-200 text-gray-700'>{this.formatCurrency(data.electricity)}</td>
-                  <td className='py-3 px-6 border-b border-gray-200 text-gray-700'>{this.formatCurrency(data.water)}</td>
+
+                  <td className='py-3 px-6 border-b border-gray-200 text-gray-700'>
+                    <div className="tooltip">
+                      {this.formatCurrency(data.electricity)}
+                      <span className="tooltiptext">
+                        <strong>Electricity Details:</strong><br />
+                        Total Electricity Used: {data.electricityUsage} kWh<br />
+                        Factor: {this.formatFactor(data.electricityFactor)} VND/kWh<br />
+                        Electricity Bill: {this.formatCurrency(data.electricity)} VND
+                      </span>
+                    </div>
+                  </td>
+
+                  <td className='py-3 px-6 border-b border-gray-200 text-gray-700'>
+                    <div className="tooltip">
+                      {this.formatCurrency(data.water)}
+                      <span className="tooltiptext">
+                        <strong>Water Details:</strong><br />
+                        Total Water Used: {data.waterUsage} m<sup>3</sup><br />
+                        Factor: {this.formatFactor(data.waterFactor)} VND/m<sup>3</sup><br />
+                        Water Bill: {this.formatCurrency(data.water)} VND
+                      </span>
+                    </div>
+                  </td>
                   <td className='py-3 px-6 border-b border-gray-200 text-gray-700'>{this.formatCurrency(data.total)}</td>
                 </tr>
               ))}
