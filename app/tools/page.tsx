@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import { HouseCalculator } from './HouseCalculator';
+import Foldable from '@/components/ui/components/Foldable';
 
 export const metadata: Metadata = {
   title: 'tools',
@@ -13,7 +14,10 @@ export default function Page() {
         All the tools I use.
       </p>
       <div className='my-8' >
-        <HouseCalculator />
+        <Foldable label='1. House Rent Calculator' defaultFolded headerCss='text-center text-xl font-bold text-gray-800 my-2'>
+          <HouseCalculator />
+        </Foldable>
+
       </div>
     </div>
   );

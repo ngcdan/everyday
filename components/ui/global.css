@@ -421,3 +421,27 @@ input[type='number']::-webkit-outer-spin-button {
   visibility: visible;
   opacity: 1;
 }
+
+/* Foldable */
+.foldable__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.foldable__content--expanded {
+  /* tự động điều chỉnh chiều cao để hiển thị toàn bộ nội dung */
+  max-height: none;
+}
+
+.foldable__content--collapsed {
+  max-height: 0;
+}
+
+.sidebar_button {
+  @apply w-full p-2 rounded bg-gray-800 text-white hover:bg-gray-700 hover:text-gray-200 transition duration-200 ease-in-out;
+}
+
+.sidebar_button_active {
+  @apply bg-blue-500 text-white;
+}

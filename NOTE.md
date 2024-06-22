@@ -24,9 +24,15 @@
 
 - Suspense allows you to defer rendering parts of your app until some condition is met.
 
-### Css note 
+### Css note
 overflow-x-auto: Đảm bảo bảng có thể cuộn ngang nếu vượt quá chiều rộng màn hình.
 fixed top-0 left-0 right-0 z-10: cố định đầu trang, z-10 đảm bảo form hiển thị trên các thành phần khác.
 overflow-y-auto max-h-screen: Cuộn dọc và không vượt quá chiều cao màn hình.
 
 
+###
+app/
+└── ui-examples/
+    ├── foldable/
+    │   └── page.tsx   // Component UI cho trang Foldable
+    └── layout.tsx     // Layout chung cho thư mục ui-examples

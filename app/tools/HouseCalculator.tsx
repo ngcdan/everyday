@@ -1,5 +1,6 @@
 "use client" // Add this line to mark the file as a client component
 
+import Foldable from '@/components/ui/components/Foldable';
 import React, { ChangeEvent, FormEvent } from 'react';
 
 interface MonthData {
@@ -38,7 +39,7 @@ export class HouseCalculator extends React.Component<{}, State> {
       electricityOdometer: 6252,
       water: 0,
       waterOdometer: 587,
-      total: 1500000,
+      total: 0,
       electricityUsage: 0,
       electricityFactor: 3300,
       waterUsage: 0,
@@ -187,7 +188,6 @@ export class HouseCalculator extends React.Component<{}, State> {
 
     return (
       <div className='container border-t border-gray-200'>
-        <h2 className='text-center text-2xl font-bold text-gray-800 my-2'>House Rent Calculator</h2>
         <form onSubmit={this.handleSubmit} className='bg-white p-6 rounded-lg shadow-lg'>
           <div className="grid grid-cols-4 gap-4">
             <div className="col-span-2">
@@ -244,7 +244,6 @@ export class HouseCalculator extends React.Component<{}, State> {
           <button type='submit' className='w-full px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600'>Calculate</button>
           <button type='button' onClick={this.handleClearData}
             className='w-full mt-2 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600'>Clear Data</button>
-
         </form>
         <div className='mt-8 overflow-x-auto'>
           <table className='min-w-full bg-white border border-gray-200'>
