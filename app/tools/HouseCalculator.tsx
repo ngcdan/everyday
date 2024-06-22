@@ -12,14 +12,17 @@ interface MonthData {
   electricityFactor: number;
   waterUsage: number;
   waterFactor: number;
+  electricityOdometer: number;
+  waterOdometer: number;
 }
 
 interface State {
   electricityUsage: number;
   electricityFactor: number;
+  electricityOdometer: number;
   waterUsage: number;
   waterFactor: number;
-
+  waterOdometer: number;
   submitted: boolean;
   monthsData: MonthData[];
 }
@@ -32,7 +35,9 @@ export class HouseCalculator extends React.Component<{}, State> {
       month: new Date(currentYear, i).toLocaleString('default', { month: '2-digit', year: 'numeric' }),
       rent: 1500000, // Fixed house rent
       electricity: 0,
+      electricityOdometer: 6252,
       water: 0,
+      waterOdometer: 587,
       total: 1500000,
       electricityUsage: 0,
       electricityFactor: 3300,
@@ -42,6 +47,8 @@ export class HouseCalculator extends React.Component<{}, State> {
 
     this.state = {
       electricityUsage: 0,
+      electricityOdometer: 0,
+      waterOdometer: 0,
       waterUsage: 0,
       electricityFactor: 3300,
       waterFactor: 15000,
@@ -69,8 +76,26 @@ export class HouseCalculator extends React.Component<{}, State> {
     this.setState({ electricityUsage: Number(event.target.value) });
   };
 
+  handleElectricityMeterChange = (event: ChangeEvent<HTMLInputElement>) => {
+    let value = Number(event.target.value);
+    let previousMonthData = this.getPreviousMonthData();
+    if (previousMonthData) {
+      let electricityUsage = Number(event.target.value) - previousMonthData.electricityOdometer;
+      this.setState({ electricityUsage: electricityUsage, electricityOdometer: value });
+    }
+  };
+
   handleWaterChange = (event: ChangeEvent<HTMLInputElement>) => {
     this.setState({ waterUsage: Number(event.target.value) });
+  };
+
+  handleWaterMeterChange = (event: ChangeEvent<HTMLInputElement>) => {
+    let value = Number(event.target.value);
+    let previousMonthData = this.getPreviousMonthData();
+    if (previousMonthData) {
+      let waterUsage = value - previousMonthData.waterOdometer;
+      this.setState({ waterOdometer: value, waterUsage: waterUsage });
+    }
   };
 
   handleElectricityFactorChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -115,7 +140,9 @@ export class HouseCalculator extends React.Component<{}, State> {
       month: new Date(currentYear, i).toLocaleString('default', { month: '2-digit', year: 'numeric' }),
       rent: 1500000, // Fixed house rent
       electricity: 0,
+      electricityOdometer: 6252,
       water: 0,
+      waterOdometer: 587,
       total: 1500000,
       electricityUsage: 0,
       electricityFactor: 3300,
@@ -133,6 +160,28 @@ export class HouseCalculator extends React.Component<{}, State> {
     return value.toLocaleString('en-US', { maximumFractionDigits: 0 });
   };
 
+  getPreviousMonth() {
+    const now = new Date();
+    const previousMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+    return previousMonth;
+  }
+
+  getMonthString(date: Date) {
+    const month = date.getMonth() + 1; // Months are zero-based
+    const year = date.getFullYear();
+    return `${month < 10 ? '0' : ''}${month}/${year}`;
+  }
+
+  getPreviousMonthData() {
+    const previousMonth = this.getMonthString(this.getPreviousMonth());
+    const previousMonthData = this.state.monthsData.find(data => data.month === previousMonth);
+    return previousMonthData || {
+      month: previousMonth,
+      rent: 0, electricity: 0,
+      water: 0, total: 0, electricityOdometer: 0, waterOdometer: 0
+    };
+  }
+
   render() {
     const currentMonth = new Date().getMonth();
 
@@ -140,41 +189,61 @@ export class HouseCalculator extends React.Component<{}, State> {
       <div className='container border-t border-gray-200'>
         <h2 className='text-center text-2xl font-bold text-gray-800 my-2'>House Rent Calculator</h2>
         <form onSubmit={this.handleSubmit} className='bg-white p-6 rounded-lg shadow-lg'>
-          <div className='mb-4 columns-2'>
-            <label className='block mb-2 text-gray-600'>Electricity Usage:</label>
-            <input
-              type='number'
-              value={this.state.electricityUsage}
-              onChange={this.handleElectricityChange}
-              className='w-full p-2 border border-gray-300 rounded mb-2'
-            />
-            <label className='block mb-2 text-gray-600'>Electricity Factor:</label>
-            <input
-              type='text'
-              value={this.formatFactor(this.state.electricityFactor)}
-              onChange={this.handleElectricityFactorChange}
-              className='w-full p-2 border border-gray-300 rounded'
-            />
+          <div className="grid grid-cols-4 gap-4">
+            <div className="col-span-2">
+              <label className='block mb-2 text-gray-600'>Electricity Meter:</label>
+              <input
+                type='number'
+                value={this.state.electricityOdometer}
+                onChange={this.handleElectricityMeterChange}
+                className='w-full p-2 border border-gray-300 rounded mb-2' />
+            </div>
+            <div>
+              <label className='block mb-2 text-gray-600'>Electricity Usage:</label>
+              <input type='number'
+                value={this.state.electricityUsage}
+                onChange={this.handleElectricityChange}
+                className='w-full p-2 border border-gray-300 rounded mb-2' />
+            </div>
+            <div>
+              <label className='block mb-2 text-gray-600'>Electricity Factor:</label>
+              <input type='text'
+                value={this.formatFactor(this.state.electricityFactor)}
+                onChange={this.handleElectricityFactorChange}
+                className='w-full p-2 border border-gray-300 rounded' />
+            </div>
           </div>
 
-          <div className='mb-4 columns-2'>
-            <label className='block mb-2 text-gray-600'>Water Usage:</label>
-            <input
-              type='number'
-              value={this.state.waterUsage}
-              onChange={this.handleWaterChange}
-              className='w-full p-2 border border-gray-300 rounded mb-2'
-            />
-            <label className='block mb-2 text-gray-600'>Water Factor:</label>
-            <input
-              type='text'
-              value={this.formatFactor(this.state.waterFactor)}
-              onChange={this.handleWaterFactorChange}
-              className='w-full p-2 border border-gray-300 rounded'
-            />
+          <div className="grid grid-cols-4 gap-4">
+            <div className='col-span-2'>
+              <label className='block mb-2 text-gray-600'>Water Meter:</label>
+              <input
+                type='number'
+                value={this.state.waterOdometer}
+                onChange={this.handleWaterMeterChange}
+                className='w-full p-2 border border-gray-300 rounded mb-2' />
+            </div>
+            <div>
+              <label className='block mb-2 text-gray-600'>Water Usage:</label>
+              <input
+                type='number'
+                value={this.state.waterUsage}
+                onChange={this.handleWaterChange}
+                className='w-full p-2 border border-gray-300 rounded mb-2' />
+            </div>
+            <div>
+              <label className='block mb-2 text-gray-600'>Water Factor:</label>
+              <input
+                type='text'
+                value={this.formatFactor(this.state.waterFactor)}
+                onChange={this.handleWaterFactorChange}
+                className='w-full p-2 border border-gray-300 rounded' />
+            </div>
           </div>
-          <button type='submit' className='w-full px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600'>Submit</button>
-          <button type='button' onClick={this.handleClearData} className='w-full mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600'>Clear Data</button>
+
+          <button type='submit' className='w-full px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600'>Calculate</button>
+          <button type='button' onClick={this.handleClearData}
+            className='w-full mt-2 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600'>Clear Data</button>
 
         </form>
         <div className='mt-8 overflow-x-auto'>
