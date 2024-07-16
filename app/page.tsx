@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image'
-import { merriweather } from '@/lib/fonts'
 
 export default function Page() {
   return (

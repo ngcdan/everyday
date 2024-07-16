@@ -1,6 +1,6 @@
 "use client"
 
-import Foldable from "@/lib/ui/components/Foldable";
+import Foldable from "@/lib/components/Foldable";
 import React from "react";
 
 // Example usage
