@@ -27,7 +27,7 @@ export default function Page() {
         I try to write down everything I learn, including some tools I develop. You can find them here.
       </p>
 
-      <ol className="my-2 list-decimal">
+      <ol className="my-2 mx-3 px-2 list-decimal">
         <li className="mb-2">
           <Link className={`font-semibold`} href="/everyday" > Everyday : </Link>
           <span className='italic'>Writing about what I learn everyday.</span>
