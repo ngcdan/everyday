@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { HouseCalculator } from './HouseCalculator';
-import Foldable from '@/components/ui/components/Foldable';
+import Foldable from '@/lib/components/Foldable';
 
 export const metadata: Metadata = {
   title: 'tools',

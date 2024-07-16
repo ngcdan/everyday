@@ -36,3 +36,9 @@ app/
     ├── foldable/
     │   └── page.tsx   // Component UI cho trang Foldable
     └── layout.tsx     // Layout chung cho thư mục ui-examples
+
+
+### Dynamic Routes
+[](https://nextjs.org/learn-pages-router/basics/dynamic-routes/page-path-external-data)
+
+Overview of the steps

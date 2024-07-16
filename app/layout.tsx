@@ -1,5 +1,5 @@
-import '@/components/ui/global.css';
-import { poppins } from '@/components/ui/fonts';
+import '@/styles/global.css';
+import { poppins } from '@/lib/fonts';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -29,12 +29,6 @@ export default function RootLayout({
             {children}
           </main>
 
-          <footer className="h-16 bg-stone-100 text-stone-700">
-            <div className="max-w-5xl mx-auto w-full h-full flex justify-between items-center">
-              <a className='px-4 py-2' rel="me" target="_blank" href="mailto:linuss1908@gmail.com">🐘 @dan</a>
-              <a className='px-4 py-2' rel="" href="/rss.xml">📮 RSS</a>
-            </div>
-          </footer>
         </div>
       </body>
     </html>

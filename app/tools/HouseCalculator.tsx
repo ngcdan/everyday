@@ -1,6 +1,5 @@
 "use client" // Add this line to mark the file as a client component
 
-import Foldable from '@/components/ui/components/Foldable';
 import React, { ChangeEvent, FormEvent } from 'react';
 
 interface MonthData {

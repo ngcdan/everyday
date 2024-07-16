@@ -22,6 +22,12 @@ const config: Config = {
           600: '#2F6FEB',
         },
       },
+      fontSize: {
+        'xs': '.75rem',
+        'sm': '.875rem',
+        // ... các kích thước khác
+        '2.5xl': '2.5rem', // Thêm class mới
+      },
     },
     keyframes: {
       shimmer: {
