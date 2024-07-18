@@ -1,13 +1,14 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { merriweather } from '@/lib/fonts'
-import { getAllPostIds } from '@/lib/post';
+import { getAllPostIds, getPostData } from '@/lib/post';
 
+//Trang danh sách bài viết (blog index).
 export const metadata: Metadata = {
-  title: 'Everyday',
+  title: 'posts',
 };
 
-export default async function Page() {
+export default async function BlogPostPage() {
   let paths = getAllPostIds();
 
   return (
@@ -28,29 +29,25 @@ export default async function Page() {
               Reading - Cultivate an inclination towards resistance and pain.
             </Link>
           </p>
-        </div>
 
-        {paths.map((path: any) => {
-          return (
-            <p key={path}>
-              <span className={`block md:inline-block font-bold ${merriweather.className} text-gray-600`}>
-                2024.01.29
-              </span>
-              <Link className='ml-3' href="everyday/reading/cultivate-an-inclination-towards-resistance-and-pain">
-                {path['slug']}
-              </Link>
-            </p>
-          )
-        })}
+          {paths.map((path: any) => {
+            return (
+              <p key={path}>
+                <span className={`block md:inline-block font-bold ${merriweather.className} text-gray-600`}>
+                  2024.01.29
+                </span>
+                <Link className='ml-3' href="everyday/reading/cultivate-an-inclination-towards-resistance-and-pain">
+                  {path['slug']}
+                </Link>
+              </p>
+            )
+          })}
+
+        </div>
       </section>
+
+
     </div>
   );
 }
 
-//Similar to getStaticPaths - it helps define the possible parameter values for your routes.
-export function generateStaticParams() {
-  const paths = getAllPostIds();
-  console.log(paths);
-  return paths;
-
-}

@@ -1,7 +1,10 @@
 import Link from 'next/link';
 import Image from 'next/image'
+import { getSortedPostsData } from '../lib/post';
 
-export default function Page() {
+export default async function Page() {
+  const allPostsData = getSortedPostsData();
+
   return (
     <div className="flex flex-col mx-3 md:mx-0 px-4 md:px-8 lg:px-12">
       <div className="flex flex-col justify-center justify-items-center my-4">
@@ -45,6 +48,21 @@ export default function Page() {
           <span className='italic'> A set of rules, processes, and goals that serve as a structured guide for my life..</span>
         </li>
       </ol>
+
+      <section className={`text-lg py-1`}>
+        <h2 className={'my-2 text-xl'}>Blog</h2>
+        <ul className={'p-0 m-0 list-none'}>
+          {allPostsData.map(({ id, date, title }: any) => (
+            <li className={'mx-5'} key={id}>
+              {title}
+              <br />
+              {id}
+              <br />
+              {date}
+            </li>
+          ))}
+        </ul>
+      </section>
 
 
       <p className="my-3">
