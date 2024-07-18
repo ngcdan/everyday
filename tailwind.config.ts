@@ -9,7 +9,12 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-roboto)'],
+        sans: [
+          '-apple-system',
+          'BlinkMacSystemFont',
+          '"Segoe UI"',
+          'var(--font-roboto)'
+        ],
         mono: ['var(--font-merriweather)'],
       },
       gridTemplateColumns: {
