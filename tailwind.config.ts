@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-poppins)'],
+        sans: ['var(--font-roboto)'],
         mono: ['var(--font-merriweather)'],
       },
       gridTemplateColumns: {

@@ -1,12 +1,12 @@
 // this file to keep the fonts that will be used throughout your application.
-import { Poppins, Merriweather } from 'next/font/google'
+import { Merriweather, Roboto } from 'next/font/google'
 
 // subset is used to limit the fonts that will be used
 // primary font
-export const poppins = Poppins({
-   weight: ['200', '400', '500','600', '700', '800', '900'],
+export const roboto = Roboto({
   subsets: ['latin'],
-  variable: '--font-poppins', //variable option to define your CSS variable name
+  variable: '--font-roboto',
+  weight: ['300', '400', '500', '700', '900']
 });
 
 export const merriweather = Merriweather({
