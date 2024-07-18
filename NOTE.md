@@ -38,7 +38,36 @@ app/
     └── layout.tsx     // Layout chung cho thư mục ui-examples
 
 
-### Dynamic Routes
+18.07.2024
+###  Customize PostCSS Config.
+- Công cụ chuyển đổi và mở rộng css, cho phép sử dụng css mới nhất mà chưa được hỗ trợ đầy đủ trên mọi trình duyệt.
+
+_Out of the box, with no configuration, Next.js compiles CSS using PostCSS._
+_(postcss.config.js)[https://github.com/vercel/next.js/tree/canary/examples/with-postcss]_
+
+#### SSG with data using _getStaticProps_
+[Static Generation](https://nextjs.org/docs/advanced-features/data-fetching#static-generation)
+```
+export default function Home(props) { ... }
+
+export async function getStaticProps() {
+  // Get external data from the file system, API, DB, etc.
+  const data = ...
+
+  // The value of the `props` key will be
+  //  passed to the `Home` component
+  return {
+    props: ...
+  }
+}
+```
+Essentially, _getStaticProps_ allow you to tell Nextj:
+_This page has some data dependencies - so when you pre-render this page at build time, make sure to resolve them first_
+
+
+ ### Dynamic Routes
 [](https://nextjs.org/learn-pages-router/basics/dynamic-routes/page-path-external-data)
 
 Overview of the steps
+
+
