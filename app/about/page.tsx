@@ -19,12 +19,27 @@ export default function Page() {
         </p>
       </div>
 
+      <section className='my-5'>
+        <h3 className='text-3xl font-bold'>1. Keep it simple!</h3>
+        <p className='px-3'>
+          Người ta không tích luỹ mà loại trừ. Mọi thứ không tăng lên mà giảm đi mỗi ngày. Đỉnh cao của sự tu dưỡng chính là sự đơn giản.
+        </p>
+
+        <Image
+          src="/images/kiss.jpg"
+          width={660}
+          height={440}
+          className='p-2'
+          alt="Keep it simple, stupid" />
+      </section>
+
       <Image className='mb-2'
         src="/images/woodcuts_5.jpg"
         width={1500}
         height={987}
         alt="Wood cut" />
-      <section className='my-5'>
+
+      <section className='hidden my-5'>
         <h3 className='text-xl font-bold'>Life</h3>
         <ol className='pl-5 my-4 list-decimal'>
           <li className="mb-2">
@@ -110,7 +125,8 @@ export default function Page() {
           <li className="mb-2">Gắn bó với những gì người khác nghĩ về bạn sẽ cướp đi tiềm năng của bạn.</li>
         </ol>
       </section>
-      <section className='my-5'>
+
+      <section className='hidden my-5'>
         <h3 className='text-xl font-bold'>Notes</h3>
         <ul className='pl-5 list-disc'>
           <li className='mb-2'>Kỷ luật không phải là ý chí, sức mạnh. Mà là loại bỏ sự phiền nhiễu xung quanh bản thân, những thứ khiến bản thân phân tâm.
@@ -229,11 +245,12 @@ export default function Page() {
           </li>
         </ul>
       </section>
+
       <section className='my-5'>
         <h3 className='text-xl font-bold'>References</h3>
         <ul className='pl-5 list-disc'>
           <li className='mb-2'>
-            <i>
+            <p>
               Trải qua nhiều chuyện như vậy có phải sẽ có cảm giác mạnh mẽ cứng cáp, đôi chút tự hào và tự tin hơn không? {' '}
               Như kiểu "Oài, tôi đã làm tốt đấy chứ" hoặc là "có chuyện gì mà tôi chưa từng trải qua đâu, tôi đã có nhiều kinh nghiệm rồi."{' '}
               Dù sao thì tôi vẫn nghĩ cuộc đời khá công bằng, ngày mưa ngày nắng không thể tránh được, {' '}
@@ -243,48 +260,43 @@ export default function Page() {
               Đừng quá bế tắc nếu chẳng mau đang ở giai đoạn khó khăn mệt mỏi, "chỉ cần bạn sống tốt, trời xanh khắn an bài". {' '}
               Nếu không thì rõ ràng cuộc đời bất công với bạn rồi, tôi thì chỉ sợ mình nợ người khác thôi, kẻ khác nợ tôi, kẻ đó lo.{' '}
               Cố lên nhé!
-            </i>
+            </p>
           </li>
-          <li className="mb-2 italic">
-            Ai cũng đều rất nhạy cảm, người nói có thể không nhận ra, chứ người nghe không bao giờ cảm nhận "nhầm". {' '}
-            Chúng ta vẫn không nên để cảm xúc tiêu cực trở thành lời nói như vết dao cứa vào tim nhau.
+          <li className="mb-2">
+            <p>
+              Ai cũng đều rất nhạy cảm, người nói có thể không nhận ra, chứ người nghe không bao giờ cảm nhận "nhầm". {' '}
+              Chúng ta vẫn không nên để cảm xúc tiêu cực trở thành lời nói như vết dao cứa vào tim nhau.
+            </p>
           </li>
-          <li className="mb-2 italic">
-            Giống như quả bóng tennis, khi đánh càng mạnh xuống thì nó càng nẩy lên cao. Nó có tính đàn hồi. {' '}
-            Giống như bản thân em với cuộc sống vậy, khi em va chạm càng nhiều, thử thách bản thân càng nhiều, {' '}
-            như thế thì cơ hội mở ra cũng càng nhiều, cũng sẽ bồi đắp kỹ năng, kiến thức, trải nghiệm bản thân
+          <li className="mb-2">
+            <p>
+              Giống như quả bóng tennis, khi đánh càng mạnh xuống thì nó càng nẩy lên cao. Nó có tính đàn hồi. {' '}
+              Giống như bản thân em với cuộc sống vậy, khi em va chạm càng nhiều, thử thách bản thân càng nhiều, {' '}
+              như thế thì cơ hội mở ra cũng càng nhiều, cũng sẽ bồi đắp kỹ năng, kiến thức, trải nghiệm bản thân
+            </p>
           </li>
-          <li className='mb-2 italic' >
-            <span className='font-medium'>Không có một xã hội dựa trên kiến thức | Chúng ta có một xã hội dựa trên kỹ năng.</span>
-            Mọi người không quan tâm những gì bạn biết, họ quan tâm những gì bạn có thể làm. {' '}
-            Có kiến thức là không đủ. Biết cách sử dụng nó, cho dù là kiến thức của riêng bạn hay của người khác, là tất cả.
+          <li className='mb-2' >
+            <p className='font-medium'>Không có một xã hội dựa trên kiến thức | Chúng ta có một xã hội dựa trên kỹ năng.</p>
+            <p>
+              Mọi người không quan tâm những gì bạn biết, họ quan tâm những gì bạn có thể làm. {' '}
+              Có kiến thức là không đủ. Biết cách sử dụng nó, cho dù là kiến thức của riêng bạn hay của người khác, là tất cả.
+            </p>
           </li>
-          <li className='mb-2 italic'>
-            <span className="block font-medium">Bất kể chúng ta đang nói gì cũng để người khác có cảm giác bị hạ thấp</span>
-            Chia sẽ thanh công của mình với người khác, luôn luôn tự nhắc nhở mình không được quá tự cao, phải biết coi {' '}
-            trọng sự hợp tác, hiểu được rằng "nhiều người kiếm củi thì mới đốt được đống lửa to". {' '}
-            Làm như thế, những vinh quan mà chúng ta đạt được mới có tác dụng, vừa có lợi cho sự nghiệp vừa giữ được {' '}
-            mối quan hệ tốt với người khác. Cũng giống như các ngôi sao khi lên nhận giải thưởng đều sẽ cảm ơn rất nhiều {' '}
-            người, cái kiểu ân nghĩa đầu môi chót lưỡi này tuy rằng không có thật, nhưng người nghe sẽ cảm thấy rất vui{' '}
-            tự nhiên sẽ có hảo cảm với chúng ta hơn rất nhiều.
+          <li className='mb-2'>
+            <p className="font-medium">Bất kể chúng ta đang nói gì cũng để người khác có cảm giác bị hạ thấp</p>
+            <p>
+              Chia sẽ thanh công của mình với người khác, luôn luôn tự nhắc nhở mình không được quá tự cao, phải biết coi {' '}
+              trọng sự hợp tác, hiểu được rằng "nhiều người kiếm củi thì mới đốt được đống lửa to". {' '}
+              Làm như thế, những vinh quan mà chúng ta đạt được mới có tác dụng, vừa có lợi cho sự nghiệp vừa giữ được {' '}
+              mối quan hệ tốt với người khác. Cũng giống như các ngôi sao khi lên nhận giải thưởng đều sẽ cảm ơn rất nhiều {' '}
+              người, cái kiểu ân nghĩa đầu môi chót lưỡi này tuy rằng không có thật, nhưng người nghe sẽ cảm thấy rất vui{' '}
+              tự nhiên sẽ có hảo cảm với chúng ta hơn rất nhiều.
+            </p>
           </li>
         </ul>
-
-
-
       </section>
-      <section className='my-5'>
-        <h3 className='text-xl font-bold'>1. Keep it simple, stupid!</h3>
-        <Image
-          src="/images/kiss.jpg"
-          width={660}
-          height={440}
-          className='pl-2'
-          alt="Keep it simple, stupid" />
-        <p className='italic'>
-          Người ta không tích luỹ mà loại trừ. Mọi thứ không tăng lên mà giảm đi mỗi ngày. Đỉnh cao của sự tu dưỡng chính là sự đơn giản.
-        </p>
-      </section>
+
+
     </div>
   );
 }
