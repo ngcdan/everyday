@@ -50,15 +50,18 @@ export default async function Page() {
       </ol>
 
       <section className={`py-1 md:hidden`}>
-        <h2 className='my-5 text-2xl font-bold text-left text-gray-800'>Recently Added</h2>
-        <ul className={'p-0 m-0 list-none'}>
+        <h2 className='my-2 text-2xl font-bold text-left text-gray-800'>Recently Added</h2>
+        <ul className={'list-none'}>
           {allPostsData.map(({ id, date, title }: any) => (
-            <li className={'mx-5'} key={id}>
-              {title}
-              <br />
-              {id}
-              <br />
-              {date}
+            <li className={''} key={id}>
+              <div className="grid items-center grid-flow-col gap-2 ml-2">
+                <div className='truncate'>
+                  <Link href={`/everyday/${id}`}>{title}</Link>
+                </div>
+                <div className='text-sm text-right'>
+                  {date}
+                </div>
+              </div>
             </li>
           ))}
         </ul>
