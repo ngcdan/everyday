@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image'
 import { getSortedPostsData } from '../lib/post';
+import { merriweather } from '@/lib/fonts'
 
 export default async function Page() {
   const allPostsData = getSortedPostsData();
@@ -58,7 +59,7 @@ export default async function Page() {
                 <div className='truncate'>
                   <Link href={`/everyday/${id}`}>{title}</Link>
                 </div>
-                <div className='text-sm text-right'>
+                <div className={`text-sm text-right  ${merriweather.className}`}>
                   {date}
                 </div>
               </div>
