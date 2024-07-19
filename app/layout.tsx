@@ -90,8 +90,8 @@ export default function RootLayout({
         </header>
 
 
-        <div className="container p-4 mx-auto mt-6 md:p-6 md:mt-12">
-          <main className="flex flex-col w-full h-full mx-auto overflow-y-auto no-list grow">
+        <div className="container w-full mx-auto mt-5 max-w-7xl">
+          <main className="flex flex-col w-full h-full overflow-y-auto no-list grow">
             {children}
           </main>
         </div>

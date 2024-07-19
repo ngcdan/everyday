@@ -1,16 +1,20 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'dev',
+  title: 'Quotes',
 };
 
 export default function Page() {
   return (
-    <div className='px-4 md:px-8 lg:px-12'>
-      <h2 className='my-5 text-2xl font-bold text-left text-gray-800'>Coding</h2>
-      <p className='my-5 text-gray-600'>
-        I keep a development log for some of the project I'm working on, you can find them here:
-      </p>
+    <div className='container p-4 mx-auto mt-5 md:p-6 md:mt-8'>
+      <div className='w-full mb-6 md:mb-12'>
+        <h1 className='mb-2 text-3xl font-bold leading-tight tracking-tighter text-center text-balance md:mb-4 md:text-left md:text-5xl md:leading-none lg:text-6xl'>
+          Quotes
+        </h1>
+        <p className='text-xl text-center text-gray-600 text-balance text-muted-foreground md:text-left md:text-2xl'>
+          Inspiring words. Beautifully expressed.
+        </p>
+      </div>
     </div>
   );
 }

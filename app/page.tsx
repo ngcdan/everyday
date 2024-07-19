@@ -7,8 +7,8 @@ export default async function Page() {
 
   return (
     <div className="flex flex-col max-w-4xl px-4 mx-auto text-lg">
-      <div className="flex flex-col justify-center my-4 justify-items-center">
-        <Image className='mx-auto my-2 rounded-full'
+      <div className="flex flex-col justify-center my-2 justify-items-center">
+        <Image className='mx-auto rounded-full'
           src="/images/avatar.jpg"
           height={300}
           width={300}
@@ -49,7 +49,7 @@ export default async function Page() {
         </li>
       </ol>
 
-      <section className={`py-1`}>
+      <section className={`py-1 md:hidden`}>
         <h2 className='my-5 text-2xl font-bold text-left text-gray-800'>Recently Added</h2>
         <ul className={'p-0 m-0 list-none'}>
           {allPostsData.map(({ id, date, title }: any) => (
