@@ -6,9 +6,9 @@ export default async function Page() {
   const allPostsData = getSortedPostsData();
 
   return (
-    <div className="flex flex-col mx-3 md:mx-0 px-4 md:px-8 lg:px-12">
-      <div className="flex flex-col justify-center justify-items-center my-4">
-        <Image className='my-2 mx-auto rounded-full'
+    <div className="flex flex-col px-4 mx-3 text-lg md:mx-0 md:px-8 lg:px-12">
+      <div className="flex flex-col justify-center my-4 justify-items-center">
+        <Image className='mx-auto my-2 rounded-full'
           src="/images/avatar.jpg"
           height={144}
           width={144}
@@ -16,8 +16,8 @@ export default async function Page() {
         <h1 className={`my-2 text-2.5xl font-bold text-center`}>{`Jesse Livermore`}</h1>
       </div>
 
-      <div className='text-base'>
-        <p className={`my-4 pt-8 text-left text-2xl`}>
+      <div className=''>
+        <p className={`my-4 pt-8 text-left text-2xl font-semibold`}>
           Hello! I&apos;m Đàn!
         </p>
         <p className="my-3 text-left text-gray-800">
@@ -29,28 +29,28 @@ export default async function Page() {
         I try to write down everything I learn, including some tools I develop. You can find them here.
       </p>
 
-      <ol className="my-2 mx-3 px-2 list-decimal">
+      <ol className="px-2 mx-3 my-2 list-decimal">
         <li className="mb-2">
-          <Link className={`font-semibold`} href="/everyday" > Everyday : </Link>
-          <span className='italic'>Writing about what I learn everyday.</span>
+          <Link className={`font-medium`} href="/everyday" > Everyday : </Link>
+          <span className=''>Writing about what I learn everyday.</span>
         </li>
 
         <li className="mb-2">
-          <Link className={`font-semibold`} href="/tools" > Tools : </Link>
-          <span className='italic'>All the tools I use.</span>
+          <Link className={`font-medium`} href="/tools" > Tools : </Link>
+          <span className=''>All the tools I use.</span>
         </li>
         <li className="mb-2">
-          <Link className={`font-semibold`} href="/looking-back" > Looking Back : </Link>
-          <span className='italic'> Capturing the moments of of my life's journey.</span>
+          <Link className={`font-medium`} href="/looking-back" > Looking Back : </Link>
+          <span className=''> Capturing the moments of of my life's journey.</span>
         </li>
         <li className="mb-2">
-          <Link className={`font-semibold`} href="/rules" > Rules : </Link>
-          <span className='italic'> A set of rules, processes, and goals that serve as a structured guide for my life..</span>
+          <Link className={`font-medium`} href="/rules" > Rules : </Link>
+          <span className=''> A set of rules, processes, and goals that serve as a structured guide for my life..</span>
         </li>
       </ol>
 
-      <section className={`text-lg py-1`}>
-        <h2 className={'my-2 text-xl'}>Blog</h2>
+      <section className={`py-1`}>
+        <h2 className='my-5 text-2xl font-bold text-left text-gray-800'>Recently Added</h2>
         <ul className={'p-0 m-0 list-none'}>
           {allPostsData.map(({ id, date, title }: any) => (
             <li className={'mx-5'} key={id}>
@@ -63,7 +63,6 @@ export default async function Page() {
           ))}
         </ul>
       </section>
-
 
       <p className="my-3">
         In case you&apos;re interested, you can reach me via <a className='font-semibold' target="_blank" href="https://github.com/ngcdan">GitHub</a>.
