@@ -6,14 +6,14 @@ export default async function Page() {
   const allPostsData = getSortedPostsData();
 
   return (
-    <div className="flex flex-col px-4 mx-3 text-lg md:mx-0 md:px-8 lg:px-12">
+    <div className="flex flex-col max-w-4xl px-4 mx-auto text-lg">
       <div className="flex flex-col justify-center my-4 justify-items-center">
         <Image className='mx-auto my-2 rounded-full'
           src="/images/avatar.jpg"
-          height={144}
-          width={144}
+          height={300}
+          width={300}
           alt="Avatar" />
-        <h1 className={`my-2 text-2.5xl font-bold text-center`}>{`Jesse Livermore`}</h1>
+        <h1 className={`my-2 text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:text-6xl mx-auto`}>{`Jesse Livermore`}</h1>
       </div>
 
       <div className=''>
