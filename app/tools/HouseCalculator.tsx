@@ -33,7 +33,7 @@ export class HouseCalculator extends React.Component<{}, State> {
     const currentYear = new Date().getFullYear();
     const initialMonthsData: MonthData[] = [...Array(12).keys()].map(i => ({
       month: new Date(currentYear, i).toLocaleString('default', { month: '2-digit', year: 'numeric' }),
-      rent: 1500000, // Fixed house rent
+      rent: 0, // Fixed house rent
       electricity: 0,
       electricityOdometer: 6252,
       water: 0,
@@ -187,7 +187,7 @@ export class HouseCalculator extends React.Component<{}, State> {
 
     return (
       <div className='container border-t border-gray-200'>
-        <form onSubmit={this.handleSubmit} className='bg-white p-6 rounded-lg shadow-lg'>
+        <form onSubmit={this.handleSubmit} className='p-6 bg-white rounded-lg shadow-lg'>
           <div className="grid grid-cols-4 gap-4">
             <div className="col-span-2">
               <label className='block mb-2 text-gray-600'>Electricity Meter:</label>
@@ -195,14 +195,14 @@ export class HouseCalculator extends React.Component<{}, State> {
                 type='number'
                 value={this.state.electricityOdometer}
                 onChange={this.handleElectricityMeterChange}
-                className='w-full p-2 border border-gray-300 rounded mb-2' />
+                className='w-full p-2 mb-2 border border-gray-300 rounded' />
             </div>
             <div>
               <label className='block mb-2 text-gray-600'>Electricity Usage:</label>
               <input type='number'
                 value={this.state.electricityUsage}
                 onChange={this.handleElectricityChange}
-                className='w-full p-2 border border-gray-300 rounded mb-2' />
+                className='w-full p-2 mb-2 border border-gray-300 rounded' />
             </div>
             <div>
               <label className='block mb-2 text-gray-600'>Electricity Factor:</label>
@@ -220,7 +220,7 @@ export class HouseCalculator extends React.Component<{}, State> {
                 type='number'
                 value={this.state.waterOdometer}
                 onChange={this.handleWaterMeterChange}
-                className='w-full p-2 border border-gray-300 rounded mb-2' />
+                className='w-full p-2 mb-2 border border-gray-300 rounded' />
             </div>
             <div>
               <label className='block mb-2 text-gray-600'>Water Usage:</label>
@@ -228,7 +228,7 @@ export class HouseCalculator extends React.Component<{}, State> {
                 type='number'
                 value={this.state.waterUsage}
                 onChange={this.handleWaterChange}
-                className='w-full p-2 border border-gray-300 rounded mb-2' />
+                className='w-full p-2 mb-2 border border-gray-300 rounded' />
             </div>
             <div>
               <label className='block mb-2 text-gray-600'>Water Factor:</label>
@@ -240,28 +240,28 @@ export class HouseCalculator extends React.Component<{}, State> {
             </div>
           </div>
 
-          <button type='submit' className='w-full px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600'>Calculate</button>
+          <button type='submit' className='w-full px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600'>Calculate</button>
           <button type='button' onClick={this.handleClearData}
-            className='w-full mt-2 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600'>Clear Data</button>
+            className='w-full px-4 py-2 mt-2 text-white bg-red-500 rounded hover:bg-red-600'>Clear Data</button>
         </form>
         <div className='mt-8 overflow-x-auto'>
           <table className='min-w-full bg-white border border-gray-200'>
             <thead>
               <tr className='bg-gray-100'>
-                <th className='py-3 px-6 border-b border-gray-200 text-gray-600 text-left text-sm uppercase font-semibold'>Month</th>
-                <th className='py-3 px-6 border-b border-gray-200 text-gray-600 text-left text-sm uppercase font-semibold'>House Rent</th>
-                <th className='py-3 px-6 border-b border-gray-200 text-gray-600 text-left text-sm uppercase font-semibold'>Electricity Bill</th>
-                <th className='py-3 px-6 border-b border-gray-200 text-gray-600 text-left text-sm uppercase font-semibold'>Water Bill</th>
-                <th className='py-3 px-6 border-b border-gray-200 text-gray-600 text-left text-sm uppercase font-semibold'>Total Cost</th>
+                <th className='px-6 py-3 text-sm font-semibold text-left text-gray-600 uppercase border-b border-gray-200'>Month</th>
+                <th className='px-6 py-3 text-sm font-semibold text-left text-gray-600 uppercase border-b border-gray-200'>House Rent</th>
+                <th className='px-6 py-3 text-sm font-semibold text-left text-gray-600 uppercase border-b border-gray-200'>Electricity Bill</th>
+                <th className='px-6 py-3 text-sm font-semibold text-left text-gray-600 uppercase border-b border-gray-200'>Water Bill</th>
+                <th className='px-6 py-3 text-sm font-semibold text-left text-gray-600 uppercase border-b border-gray-200'>Total Cost</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className='hidden'>
               {this.state.monthsData.map((data, index) => (
                 <tr key={index} className={index === currentMonth ? 'bg-yellow-100' : 'hover:bg-gray-100'}>
-                  <td className='py-3 px-6 border-b border-gray-200 text-gray-700'>{data.month}</td>
-                  <td className='py-3 px-6 border-b border-gray-200 text-gray-700'>{this.formatCurrency(data.rent)}</td>
+                  <td className='px-6 py-3 text-gray-700 border-b border-gray-200'>{data.month}</td>
+                  <td className='px-6 py-3 text-gray-700 border-b border-gray-200'>{this.formatCurrency(data.rent)}</td>
 
-                  <td className='py-3 px-6 border-b border-gray-200 text-gray-700'>
+                  <td className='px-6 py-3 text-gray-700 border-b border-gray-200'>
                     <div className="tooltip">
                       {this.formatCurrency(data.electricity)}
                       <span className="tooltiptext">
@@ -273,7 +273,7 @@ export class HouseCalculator extends React.Component<{}, State> {
                     </div>
                   </td>
 
-                  <td className='py-3 px-6 border-b border-gray-200 text-gray-700'>
+                  <td className='px-6 py-3 text-gray-700 border-b border-gray-200'>
                     <div className="tooltip">
                       {this.formatCurrency(data.water)}
                       <span className="tooltiptext">
@@ -284,7 +284,7 @@ export class HouseCalculator extends React.Component<{}, State> {
                       </span>
                     </div>
                   </td>
-                  <td className='py-3 px-6 border-b border-gray-200 text-gray-700'>{this.formatCurrency(data.total)}</td>
+                  <td className='px-6 py-3 text-gray-700 border-b border-gray-200'>{this.formatCurrency(data.total)}</td>
                 </tr>
               ))}
             </tbody>
