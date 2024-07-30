@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { merriweather } from '@/lib/fonts'
-import { getAllPostIds } from '@/lib/post';
+import { getAllPostIds, getSortedPostsData } from '@/lib/post';
 
 export const metadata: Metadata = {
   title: 'Archive',
@@ -9,6 +9,9 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   let paths = getAllPostIds();
+  const allPostsData = getSortedPostsData();
+
+  console.log(allPostsData);
 
   return (
     <div className='container p-4 mx-auto mt-5 md:p-6 md:mt-8'>
@@ -24,28 +27,29 @@ export default async function Page() {
       <section className='my-4'>
         <h2 className='text-xl font-bold'>I. Recently Added</h2>
         <div className='mx-5 my-3'>
+
           <p>
             <span className={`block md:inline-block font-bold ${merriweather.className} text-gray-600`}>
-              2024.01.29
+              2024-01-29
             </span>
             <Link className='ml-3' href="everyday/reading/cultivate-an-inclination-towards-resistance-and-pain">
               Reading - Cultivate an inclination towards resistance and pain.
             </Link>
           </p>
-        </div>
 
-        {paths.map((path: any) => {
-          return (
-            <p key={path}>
-              <span className={`block md:inline-block font-bold ${merriweather.className} text-gray-600`}>
-                2024.01.29
-              </span>
-              <Link className='ml-3' href="everyday/reading/cultivate-an-inclination-towards-resistance-and-pain">
-                {path['slug']}
-              </Link>
-            </p>
-          )
-        })}
+          {allPostsData.map((post: any) => {
+            return (
+              <p key={post.id}>
+                <span className={`block md:inline-block font-bold ${merriweather.className} text-gray-600`}>
+                  {post.date}
+                </span>
+                <Link className='ml-3' href="everyday/reading/cultivate-an-inclination-towards-resistance-and-pain">
+                  {post['title']}
+                </Link>
+              </p>
+            )
+          })}
+        </div>
       </section>
     </div>
   );

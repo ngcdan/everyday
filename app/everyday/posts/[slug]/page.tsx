@@ -22,6 +22,7 @@ export default async function BlogPostPage({ params }: any) {
       <section className='my-4'>
         <h2 className='font-bold text-xl'>I. Recently Added</h2>
         <div className='my-3 mx-5'>
+
           <p>
             <span className={`block md:inline-block font-bold ${merriweather.className} text-gray-600`}>
               2024.01.29
@@ -30,6 +31,7 @@ export default async function BlogPostPage({ params }: any) {
               Reading - Cultivate an inclination towards resistance and pain.
             </Link>
           </p>
+
         </div>
 
         <div className='my-3 mx-5'>

@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 
 export default async function BlogPostPage() {
   let paths = getAllPostIds();
+  console.log(paths);
 
   return (
     <div className='px-4 md:px-8 lg:px-12'>
@@ -21,27 +22,6 @@ export default async function BlogPostPage() {
       <section className='my-4'>
         <h2 className='font-bold text-xl'>I. Recently Added</h2>
         <div className='my-3 mx-5'>
-          <p>
-            <span className={`block md:inline-block font-bold ${merriweather.className} text-gray-600`}>
-              2024.01.29
-            </span>
-            <Link className='ml-3' href="everyday/reading/cultivate-an-inclination-towards-resistance-and-pain">
-              Reading - Cultivate an inclination towards resistance and pain.
-            </Link>
-          </p>
-
-          {paths.map((path: any) => {
-            return (
-              <p key={path}>
-                <span className={`block md:inline-block font-bold ${merriweather.className} text-gray-600`}>
-                  2024.01.29
-                </span>
-                <Link className='ml-3' href="everyday/reading/cultivate-an-inclination-towards-resistance-and-pain">
-                  {path['slug']}
-                </Link>
-              </p>
-            )
-          })}
 
         </div>
       </section>

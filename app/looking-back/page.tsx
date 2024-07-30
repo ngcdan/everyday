@@ -21,7 +21,24 @@ export default function Page() {
       <section className='my-5'>
         <h3 className='my-1 text-2xl font-bold'>2024</h3>
         <div>
+          <h5 className='my-1 font-bold text-gray-600'>June</h5>
+          <div className='flex flex-col md:flex-row md:flex-wrap mx-4 mb-4'>
+            <Image
+              src="/images/2024/jun/ME_T6_1.jpg"
+              width={2568}
+              height={1926}
+              className='p-1 rounded-md shadow-md'
+              alt="OF1 YEP" />
+            <Image
+              src="/images/2024/jun/ME_T6_2.jpg"
+              width={2056}
+              height={1182}
+              className='p-1 rounded-md shadow-md'
+              alt="OF1 YEP" />
+          </div>
+
           <h5 className='my-1 font-bold text-gray-600'>January</h5>
+
           <div className='px-4 py-4 my-2 bg-gray-100 rounded-md shadow-md'>
             <h5 className='mb-1 italic'>19.01.2024 - Tất niên OF1</h5>
             <div className='flex flex-col md:flex-row md:flex-wrap'>
@@ -53,7 +70,6 @@ export default function Page() {
               height={1530}
               className='p-1 rounded-md shadow-md'
               alt="Tet 1" />
-            <figcaption>Không khí trước Tết ở quê</figcaption>
           </figure>
 
           <figure className='px-4 py-4 my-2 bg-gray-100 rounded-md shadow-md'>
@@ -62,7 +78,6 @@ export default function Page() {
               width={960}
               height={1280}
               alt="Tet 2" />
-            <figcaption>Cây đào từ năm trước</figcaption>
           </figure>
         </div>
 
