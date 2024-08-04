@@ -4,7 +4,7 @@ date: '2022-10-24'
 tags: goal,focus,reflect
 ---
 
-# Đặt Mục Tiêu: Bí Kíp Thoát Khỏi Kiếp "Chờ May Mắn"
+# Bí Kíp Thoát Khỏi Kiếp "Chờ May Mắn"
 
 Đặt mục tiêu - thứ mà nghe thì khô khan nhưng thực ra lại cực kỳ quan trọng nếu bạn không muốn "sống mòn" chờ trúng số hay chờ vận may rơi trúng đầu.
 

@@ -14,6 +14,11 @@ export default function Page() {
         <p className='text-xl text-center text-gray-600 text-balance text-muted-foreground md:text-left md:text-2xl'>
           Inspiring words. Beautifully expressed.
         </p>
+
+        <div className='mx-4 my-4' >
+          <p className='text-xl italic text-gray-700'>Thỉnh thoảng, bạn phải có chút buồn bã để biết khi nào là thời điểm tốt đẹp sẽ đến.</p>
+        </div>
+
       </div>
     </div>
   );
