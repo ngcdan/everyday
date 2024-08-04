@@ -64,14 +64,80 @@ img {
 }
 
 .sidebar_button {
-  @apply w-full p-2 rounded bg-gray-800 text-white hover:bg-gray-700 hover:text-gray-200 transition duration-200 ease-in-out;
+  @apply w-full p-2 text-white transition duration-200 ease-in-out bg-gray-800 rounded hover:bg-gray-700 hover:text-gray-200;
 }
 
 .sidebar_button_active {
-  @apply bg-blue-500 text-white;
+  @apply text-white bg-blue-500;
 }
 
-h3.post-tag::before {
-  content: '# ';
-  color: theme('colors.gray.500');
+.converted-html {
+  margin-bottom: 2rem;
+  max-width: none;
+  overflow-wrap: break-word;
+  /* font-size: 1.125rem; */
+}
+
+/* Heading styles within .converted-html */
+.converted-html h1,
+.converted-html h2,
+.converted-html h3,
+.converted-html h4,
+.converted-html h5,
+.converted-html h6 {
+  /* Áp dụng các kiểu chung cho tất cả các heading */
+  @apply mt-4 font-semibold text-gray-900;
+  ;
+}
+
+.converted-html h1 {
+  @apply px-2 py-1 text-3xl bg-gray-50;
+}
+
+.converted-html h2 {
+  @apply px-2 py-1 text-2xl bg-gray-50;
+}
+
+.converted-html h3 {
+  @apply text-xl;
+}
+
+.converted-html h4 {
+  @apply text-lg font-medium;
+}
+
+.converted-html h5 {
+  @apply text-base font-medium;
+}
+
+.converted-html h6 {
+  @apply text-sm font-medium text-gray-700;
+}
+
+/* Paragraph styles */
+.converted-html p {
+  @apply px-4 pt-2 text-base leading-relaxed text-gray-800;
+  ;
+}
+
+/* Unordered list styles */
+.converted-html ul {
+  @apply pl-6 list-disc;
+}
+
+/* List item styles */
+.converted-html li {
+  @apply text-base leading-relaxed text-gray-700;
+}
+
+/* Bold text styles */
+.converted-html strong,
+.converted-html b {
+  @apply font-semibold;
+}
+
+/* Italic text styles */
+.converted-html em,
+.converted-html i {
+  @apply italic;
 }

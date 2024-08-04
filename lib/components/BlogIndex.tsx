@@ -14,11 +14,11 @@ function BlogIndex({ className, style, postIds }: BlogIndexProps) {
   return (
     <div className={className} style={style}>
       {postIds.map(({ date, title, slug }: any) => (
-        <p key={slug}>
-          <span className={`inline font-bold text-md ${merriweather.className} text-gray-600`}>
+        <p key={slug} className='text-gray-800'>
+          <span className={`inline font-bold text-md ${merriweather.className}`} style={{ marginRight: '15px' }}>
             {date}
           </span>
-          <Link className='ml-2' href={`everyday/posts/${slug}`}>
+          <Link className='hover:underline' href={`everyday/posts/${slug}`}>
             {title}
           </Link>
         </p>
