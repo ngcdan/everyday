@@ -1,11 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image'
-import { getSortedPostsData } from '../lib/post';
-import { merriweather } from '@/lib/fonts'
 
 export default async function Page() {
-  const allPostsData = getSortedPostsData();
-
   return (
     <div className="flex flex-col max-w-4xl px-4 mx-auto text-lg">
       <div className="flex flex-col justify-center my-2 justify-items-center">
@@ -49,24 +45,6 @@ export default async function Page() {
           <span className=''> A set of rules, processes, and goals that serve as a structured guide for my life..</span>
         </li>
       </ol>
-
-      <section className={`py-1 md:hidden`}>
-        <h2 className='my-2 text-2xl font-bold text-left text-gray-800'>Recently Added</h2>
-        <ul className={'list-none'}>
-          {allPostsData.map(({ id, date, title }: any) => (
-            <li className={''} key={id}>
-              <div className="grid items-center grid-flow-col gap-2 ml-2">
-                <div className='truncate'>
-                  <Link href={`/everyday/${id}`}>{title}</Link>
-                </div>
-                <div className={`text-sm text-right  ${merriweather.className}`}>
-                  {date}
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </section>
 
       <p className="my-3">
         In case you&apos;re interested, you can reach me via <a className='font-semibold' target="_blank" href="https://github.com/ngcdan">GitHub</a>.

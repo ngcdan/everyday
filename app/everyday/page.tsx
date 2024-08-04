@@ -1,17 +1,13 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
-import { merriweather } from '@/lib/fonts'
-import { getAllPostIds, getSortedPostsData } from '@/lib/post';
+import { getAllPostIds } from '@/lib/post';
+import BlogIndex from '@/lib/components/BlogIndex';
 
 export const metadata: Metadata = {
   title: 'Archive',
 };
 
-export default async function Page() {
-  let paths = getAllPostIds();
-  const allPostsData = getSortedPostsData();
-
-  console.log(allPostsData);
+export default async function EverydayPage() {
+  let postIds = getAllPostIds();
 
   return (
     <div className='container p-4 mx-auto mt-5 md:p-6 md:mt-8'>
@@ -23,42 +19,18 @@ export default async function Page() {
           Here's all my posts in chronological order. Cheers!
         </p>
       </div>
-
       <section className='my-4'>
-        <h2 className='text-xl font-bold'>I. Recently Added</h2>
+        <h2 className='text-xl font-bold'>1. Recently Added</h2>
         <div className='mx-5 my-3'>
-
-          <p>
-            <span className={`block md:inline-block font-bold ${merriweather.className} text-gray-600`}>
-              2024-01-29
-            </span>
-            <Link className='ml-3' href="everyday/reading/cultivate-an-inclination-towards-resistance-and-pain">
-              Reading - Cultivate an inclination towards resistance and pain.
-            </Link>
-          </p>
-
-          {allPostsData.map((post: any) => {
-            return (
-              <p key={post.id}>
-                <span className={`block md:inline-block font-bold ${merriweather.className} text-gray-600`}>
-                  {post.date}
-                </span>
-                <Link className='ml-3' href="everyday/reading/cultivate-an-inclination-towards-resistance-and-pain">
-                  {post['title']}
-                </Link>
-              </p>
-            )
-          })}
+          <BlogIndex postIds={postIds} />
         </div>
       </section>
+
+      <section className='my-4'>
+        <h2 className='text-xl font-bold'>2. Posts by categories</h2>
+      </section>
+
     </div>
   );
 }
 
-//Similar to getStaticPaths - it helps define the possible parameter values for your routes.
-export function generateStaticParams() {
-  const paths = getAllPostIds();
-  console.log(paths);
-  return paths;
-
-}

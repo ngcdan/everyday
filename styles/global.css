@@ -70,3 +70,8 @@ img {
 .sidebar_button_active {
   @apply bg-blue-500 text-white;
 }
+
+h3.post-tag::before {
+  content: '# ';
+  color: theme('colors.gray.500');
+}
