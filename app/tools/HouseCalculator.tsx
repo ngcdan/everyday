@@ -31,7 +31,7 @@ export class HouseCalculator extends React.Component<{}, State> {
   constructor(props: {}) {
     super(props);
     const currentYear = new Date().getFullYear();
-    const initialMonthsData: MonthData[] = [...Array(12).keys()].map(i => ({
+    const initialMonthsData: MonthData[] = Array.from({ length: 12 }, (_, i) => ({
       month: new Date(currentYear, i).toLocaleString('default', { month: '2-digit', year: 'numeric' }),
       rent: 0, // Fixed house rent
       electricity: 0,
