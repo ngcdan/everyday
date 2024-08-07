@@ -33,16 +33,17 @@ export default async function Page() {
         </li>
 
         <li className="mb-2">
+          <Link className={`font-medium`} href="/chatbot" > AI Assistant : </Link>
+          <span className=''> AI based on the Vercel AI SDK.</span>
+        </li>
+
+        <li className="mb-2">
           <Link className={`font-medium`} href="/tools" > Tools : </Link>
           <span className=''>All the tools I use.</span>
         </li>
         <li className="mb-2">
           <Link className={`font-medium`} href="/looking-back" > Looking Back : </Link>
           <span className=''> Capturing the moments of of my life's journey.</span>
-        </li>
-        <li className="mb-2">
-          <Link className={`font-medium`} href="/rules" > Rules : </Link>
-          <span className=''> A set of rules, processes, and goals that serve as a structured guide for my life..</span>
         </li>
       </ol>
 
