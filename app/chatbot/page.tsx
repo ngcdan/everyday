@@ -14,9 +14,9 @@ import Image from "next/image";
 import React from "react";
 
 const examples = [
-  "To be or not to be",
-  "All the world's a stage",
-  "What is the meaning of life?",
+  "I'm feeling really down and unmotivated today.",
+  "I can't seem to focus on anything lately.",
+  "I'm struggling to keep a clean workspace.",
 ];
 
 export default function Chat() {
