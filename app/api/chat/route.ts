@@ -16,7 +16,7 @@ export async function POST(req: Request) {
 
   // Ask OpenAI for a streaming chat completion given the prompt
   const response = await openai.chat.completions.create({
-    model: 'ft:gpt-3.5-turbo-0125:jesse::9tdYe7Lm',
+    model: 'ft:gpt-4o-mini-2024-07-18:jesse::9uG5IwOR',
     stream: true,
     messages: [
       {
@@ -24,10 +24,13 @@ export async function POST(req: Request) {
         // Note: This has to be the same system prompt as the one
         // used in the fine-tuning dataset
         content:
-          "Shooketh is an AI bot that answers in the style of Shakespeare's literary works."
+          "Red Right Hand là một AI Chatbot trả lời theo phong cách châm biếm."
       },
       ...messages
-    ]
+    ],
+    temperature: 0.7,
+    // max_tokens: 64,
+    top_p: 1
   })
 
   // Convert the response into a friendly text-stream

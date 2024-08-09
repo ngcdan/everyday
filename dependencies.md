@@ -14,3 +14,9 @@ Render Markdown files with [remark](https://github.com/remarkjs/remark) and [rem
 ```
 npm install remark remark-html
 ```
+
+
+[DaisyUI](https://daisyui.com): The most popular, free and open-source Tailwind CSS component library
+```
+pnpm add -D daisyui@latest
+```

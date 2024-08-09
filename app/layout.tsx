@@ -1,5 +1,5 @@
 import '@/styles/global.css';
-import { Search, Sun, Menu } from 'react-feather';
+import { Search, Sun, Menu, Moon } from 'react-feather';
 import { roboto } from '@/lib/fonts';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -67,25 +67,26 @@ export default function RootLayout({
                 href="/looking-back">Looking Back</Link>
 
             </div>
+
             <div className="flex items-center justify-end flex-1">
               <nav className="flex items-center space-x-2">
                 <a href="/" className="relative inline-flex items-center justify-center w-8 h-8 p-0 transition-colors bg-transparent rounded-md hover:bg-gray-300 focus-visible:ring-1 focus-visible:ring-ring">
                   <Search size={24} strokeWidth={2} />
                 </a>
 
-                <button type='button'
-                  className="inline-flex items-center justify-center w-8 h-8 p-0 text-sm font-medium transition-colors rounded-md ring-offset-background focus-visible:outline-none focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-gray-300 focus-visible:ring-0 focus-visible:ring-offset-0">
-                  <Sun size={24} strokeWidth={2} />
-                </button>
+                <label className="swap swap-rotate">
+                  <input type="checkbox" />
+                  <Sun size={24} className="swap-off" />
+                  <Moon size={24} className="swap-on" />
+                </label>
 
                 <button type='button'
                   className="relative inline-flex items-center justify-center w-8 h-8 p-0 text-sm font-medium transition-colors bg-transparent rounded-md outline-none ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-gray-300 md:hidden" >
                   <Menu size={24} strokeWidth={2} />
                 </button>
-
               </nav>
-
             </div>
+
           </div>
         </header>
 

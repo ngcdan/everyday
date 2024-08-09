@@ -1,5 +1,5 @@
 import React from "react";
-import { User, Send, Loader } from 'react-feather';
+import { Send, Loader } from 'react-feather';
 import Image from "next/image";
 import clsx from "clsx";
 import Textarea from "react-textarea-autosize";
@@ -12,9 +12,9 @@ interface AvatarProps {
 }
 export default function Avatar({ role }: AvatarProps) {
   return role === "user" ? (
-    <User size={20} />
+    <Image src="/images/avatar.jpg" alt="User" width={30} height={30} />
   ) : (
-    <Image src="/images/avatar.jpg" alt="Nqcdan" width={36} height={36} />
+    <Image src="/images/tommy.png" alt="Tommy" width={30} height={30} />
   );
 }
 
@@ -26,14 +26,9 @@ export interface MessageProps {
 export function Message({ role, content }: MessageProps) {
   return (
     <div
-      className={clsx(
-        "container w-full border-b border-gray-200 py-8",
-        role === "user" ? "bg-white" : "bg-gray-100",)}>
-
+      className={clsx("flex-container w-full border-b border-gray-200 py-8", role === "user" ? "bg-white" : "bg-gray-100",)}>
       <div className="flex items-start w-full max-w-screen-md px-0 space-x-4 md:px-5">
-        <div className={clsx(role === "assistant" ? "bg-white" : "bg-black p-1.5 text-white")}>
-          <Avatar role={role} />
-        </div>
+        <Avatar role={role} />
         <div className="w-full mt-1 prose break-words prose-p:leading-relaxed">
           {content}
         </div>
@@ -44,9 +39,9 @@ export function Message({ role, content }: MessageProps) {
 
 /* ---------- ChatWindow: Manages the display of the welcome section or messages */
 const examples = [
-  "I'm feeling really down and unmotivated today.",
-  "I can't seem to focus on anything lately.",
-  "I'm struggling to keep a clean workspace.",
+  "/start python",
+  "Yêu có cần tỏ tình, cưới có cần cầu hôn?",
+  "Tâm trạng cho ngày mới?",
 ];
 
 export interface ChatWindowProps {
@@ -60,12 +55,13 @@ export function ChatWindow({ messages, setInput, inputRef, }: ChatWindowProps) {
       <Message key={i} role={message.role} content={message.content} />
     ))
   ) : (
-    <div className="max-w-screen-md mx-5 border rounded-md mt-15 border-gray-200sm:mx-0 sm:w-full">
+    <div className="max-w-screen-md mx-5 border border-gray-200 rounded-md mt-15 sm:mx-0 sm:w-full">
       <div className="flex flex-col space-y-4 p-7 sm:p-10">
-        <Image src="/images/avatar.jpg" alt="Nqcdan" width={40} height={40} className="w-20 h-20" />
-        <h1 className="text-lg font-semibold text-black">Hi, I'm Jesse Livermore!</h1>
+        <Image src="/images/tommy.png" alt="Red Right Hand" width={200} height={200}
+          className='p-1 rounded-md shadow-md' />
+        <h1 className="text-lg font-semibold text-black">Hi, I'm Red Right Hand!</h1>
         <p className="text-gray-500">
-          I'm an AI bot built with OpenAI, GPT-3.5-turbo, and fine-tuned.
+          AI bot built with OpenAI, GPT-3.5-turbo, and fine-tuned.
         </p>
       </div>
       <div className="flex flex-col space-y-4 border-t border-gray-200 bg-gray-50 p-7 sm:p-10">
