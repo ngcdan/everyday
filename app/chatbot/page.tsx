@@ -23,6 +23,7 @@ function useChat(): UseChatResponse {
     },
     onError: (error) => {
       // Handle errors that occur during the request
+      console.log(error);
       if (error.cause) {
         const errorMessage = error.message;
         if (errorMessage.startsWith("Country, region, or territory not supported")) {
