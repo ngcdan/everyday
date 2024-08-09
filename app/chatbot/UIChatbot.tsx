@@ -61,7 +61,7 @@ export function ChatWindow({ messages, setInput, inputRef, }: ChatWindowProps) {
           className='p-1 rounded-md shadow-md' />
         <h1 className="text-lg font-semibold text-black">Hi, I'm Red Right Hand!</h1>
         <p className="text-gray-500">
-          AI bot built with OpenAI, GPT-3.5-turbo, and fine-tuned.
+          AI bot built with OpenAI, GPT-4o-mini, and fine-tuned.
         </p>
       </div>
       <div className="flex flex-col space-y-4 border-t border-gray-200 bg-gray-50 p-7 sm:p-10">
@@ -139,7 +139,7 @@ export function ChatInput(props: ChatInputProps) {
 
       </form>
       <p className="text-xs text-center text-gray-400">
-        Built with OpenAI, GPT-3.5-turbo, and fine-tuned.
+        Built with OpenAI, GPT-4o-mini, and fine-tuned.
       </p>
     </div>
   );
