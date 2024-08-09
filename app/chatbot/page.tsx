@@ -20,9 +20,22 @@ function useChat(): UseChatResponse {
         window.alert("You have reached your request limit for the day.");
         return;
       }
-
+    },
+    onError: (error) => {
+      // Handle errors that occur during the request
+      if (error.cause) {
+        const errorMessage = error.message;
+        if (errorMessage.startsWith("Country, region, or territory not supported")) {
+          window.alert("Your location is not supported by this service.");
+        } else {
+          window.alert("An unexpected error occurred." + errorMessage);
+        }
+      } else {
+        window.alert("An unexpected error occurred.");
+      }
     },
   });
+
 }
 
 export default function Chat() {
