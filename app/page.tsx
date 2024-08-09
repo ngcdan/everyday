@@ -34,7 +34,7 @@ export default async function Page() {
 
         <li className="mb-2">
           <Link className={`font-medium`} href="/chatbot" > AI Assistant : </Link>
-          <span className=''>AI bot built with OpenAI, GPT-3.5-turbo, and fine-tuned.</span>
+          <span className=''>AI bot built with OpenAI, GPT-4o-mini, and fine-tuned.</span>
         </li>
 
         <li className="mb-2">
