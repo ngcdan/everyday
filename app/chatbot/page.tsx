@@ -12,13 +12,15 @@ interface UseChatResponse {
   isLoading: boolean;
 }
 
-export function useChat(): UseChatResponse {
+function useChat(): UseChatResponse {
   return useAiChat({
     onResponse: (response) => {
+      console.log(response);
       if (response.status === 429) {
         window.alert("You have reached your request limit for the day.");
         return;
       }
+
     },
   });
 }

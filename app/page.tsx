@@ -28,13 +28,13 @@ export default async function Page() {
 
       <ol className="px-2 mx-3 my-2 list-decimal">
         <li className="mb-2">
-          <Link className={`font-medium`} href="/everyday" > Everyday : </Link>
+          <Link className={`font-medium`} href="/everyday">Everyday : </Link>
           <span className=''>Writing about what I learn everyday.</span>
         </li>
 
         <li className="mb-2">
           <Link className={`font-medium`} href="/chatbot" > AI Assistant : </Link>
-          <span className=''> AI based on the Vercel AI SDK.</span>
+          <span className=''>AI bot built with OpenAI, GPT-3.5-turbo, and fine-tuned.</span>
         </li>
 
         <li className="mb-2">
