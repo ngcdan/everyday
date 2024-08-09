@@ -29,12 +29,6 @@ const config: Config = {
         },
         accent: '#FF5733',
       },
-      fontSize: {
-        'xs': '.75rem',
-        'sm': '.875rem',
-        // ... các kích thước khác
-        '2.5xl': '2.5rem', // Thêm class mới
-      },
     },
     keyframes: {
       shimmer: {
@@ -43,7 +37,14 @@ const config: Config = {
         },
       },
     },
+    listStyleType: {
+      none: 'none',
+      disc: 'disc',
+      decimal: 'decimal',
+      square: 'square',
+      roman: 'upper-roman',
+    }
   },
-  plugins: [require('@tailwindcss/forms')],
+  // plugins: [require('@tailwindcss/forms')],
 };
 export default config;

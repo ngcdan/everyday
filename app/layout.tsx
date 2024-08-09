@@ -91,7 +91,7 @@ export default function RootLayout({
 
 
         <div className="container w-full mx-auto mt-5 max-w-7xl">
-          <main className="flex flex-col w-full h-full overflow-y-auto no-list grow">
+          <main className="flex flex-col w-full h-full overflow-y-auto grow">
             {children}
           </main>
         </div>

@@ -19,6 +19,10 @@ img {
   display: block;
 }
 
+.flex-container {
+  @apply flex items-center justify-center
+}
+
 /* Tooltip */
 .tooltip {
   position: relative;
