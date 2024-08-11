@@ -39,8 +39,7 @@ function useChat(): UseChatResponse {
   });
 
 }
-
-export const examples = [
+const examples = [
   "Yêu có cần tỏ tình, cưới có cần cầu hôn?",
   "Tâm trạng cho ngày mới?",
 ]

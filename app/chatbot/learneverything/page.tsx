@@ -40,7 +40,7 @@ function useChat(): UseChatResponse {
 
 }
 
-export const examples = [
+const examples = [
   "Agile development",
   "Introduction to Docker",
   "Learn Python in Y minutes",
