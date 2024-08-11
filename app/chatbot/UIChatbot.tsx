@@ -6,6 +6,12 @@ import Textarea from "react-textarea-autosize";
 
 export type Role = 'user' | 'system' | 'assistant' | 'function';
 
+export type ChatBotInfo = {
+  id: string,
+  name: string,
+  description?: string
+}
+
 /* --------- Avatar: Handles the avatar logic based on the message role. --------- */
 interface AvatarProps {
   role: Role;
@@ -38,18 +44,14 @@ export function Message({ role, content }: MessageProps) {
 }
 
 /* ---------- ChatWindow: Manages the display of the welcome section or messages */
-const examples = [
-  "/start python",
-  "Yêu có cần tỏ tình, cưới có cần cầu hôn?",
-  "Tâm trạng cho ngày mới?",
-];
-
 export interface ChatWindowProps {
   messages: { role: Role; content: string }[];
   setInput: (value: string) => void;
   inputRef: React.RefObject<HTMLTextAreaElement>;
+  examples: string[];
+  info: ChatBotInfo
 }
-export function ChatWindow({ messages, setInput, inputRef, }: ChatWindowProps) {
+export function ChatWindow({ messages, setInput, inputRef, examples, info }: ChatWindowProps) {
   return messages.length > 0 ? (
     messages.map((message, i) => (
       <Message key={i} role={message.role} content={message.content} />
@@ -59,10 +61,8 @@ export function ChatWindow({ messages, setInput, inputRef, }: ChatWindowProps) {
       <div className="flex flex-col space-y-4 p-7 sm:p-10">
         <Image src="/images/tommy.png" alt="Red Right Hand" width={200} height={200}
           className='p-1 rounded-md shadow-md' />
-        <h1 className="text-lg font-semibold text-black">Hi, I'm Red Right Hand!</h1>
-        <p className="text-gray-500">
-          AI bot built with OpenAI, GPT-4o-mini, and fine-tuned.
-        </p>
+        <h1 className="text-lg font-semibold text-black">{`Hi, I'm ${info.name}!`}</h1>
+        <p className="text-gray-500">{info.description || ''}</p>
       </div>
       <div className="flex flex-col space-y-4 border-t border-gray-200 bg-gray-50 p-7 sm:p-10">
         {examples.map((example, i) => (
@@ -72,8 +72,7 @@ export function ChatWindow({ messages, setInput, inputRef, }: ChatWindowProps) {
             onClick={() => {
               setInput(example);
               inputRef.current?.focus();
-            }}
-          >
+            }} >
             {example}
           </button>
         ))}
@@ -139,7 +138,7 @@ export function ChatInput(props: ChatInputProps) {
 
       </form>
       <p className="text-xs text-center text-gray-400">
-        Built with OpenAI, GPT-4o-mini, and fine-tuned.
+        Built with GPT-4o-mini, and fine-tuned.
       </p>
     </div>
   );

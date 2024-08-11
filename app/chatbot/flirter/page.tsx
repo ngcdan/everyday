@@ -2,7 +2,8 @@
 
 import React, { useRef } from "react";
 import { useChat as useAiChat } from "ai/react";
-import { ChatInput, ChatWindow, MessageProps } from "./UIChatbot";
+import { ChatInput, ChatWindow, MessageProps } from "../UIChatbot";
+import { info } from "./config";
 
 interface UseChatResponse {
   messages: MessageProps[];
@@ -14,8 +15,8 @@ interface UseChatResponse {
 
 function useChat(): UseChatResponse {
   return useAiChat({
+    api: 'flirter/api',
     onResponse: (response) => {
-      console.log(response);
       if (response.status === 429) {
         window.alert("You have reached your request limit for the day.");
         return;
@@ -39,7 +40,12 @@ function useChat(): UseChatResponse {
 
 }
 
-export default function Chat() {
+export const examples = [
+  "Yêu có cần tỏ tình, cưới có cần cầu hôn?",
+  "Tâm trạng cho ngày mới?",
+]
+
+export default function EmmaChatBot() {
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const { messages, input, setInput, handleSubmit, isLoading } = useChat();
@@ -47,7 +53,7 @@ export default function Chat() {
   return (
     <main className="flex flex-col items-center justify-between pb-40">
       <div className="absolute justify-between hidden w-full px-5 top-5 sm:flex"></div>
-      <ChatWindow messages={messages} setInput={setInput} inputRef={inputRef} />
+      <ChatWindow messages={messages} setInput={setInput} inputRef={inputRef} examples={examples} info={info} />
       <ChatInput
         formRef={formRef}
         inputRef={inputRef}
@@ -55,7 +61,6 @@ export default function Chat() {
         setInput={setInput}
         handleSubmit={handleSubmit}
         isLoading={isLoading} />
-
     </main>
   );
 }

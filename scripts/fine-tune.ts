@@ -7,7 +7,6 @@
 
 import fs from 'fs'
 import OpenAI from 'openai'
-//import { FineTuningJobEvent } from 'openai/resources/fine-tuning'
 import 'dotenv/config'
 
 // Gets the API Key from the environment variable `OPENAI_API_KEY`

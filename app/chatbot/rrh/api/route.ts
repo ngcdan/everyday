@@ -1,3 +1,4 @@
+//ref: https://nextjs.org/docs/app/building-your-application/routing/route-handlers
 // ./app/api/chat/route.ts
 import OpenAI from 'openai'
 import { OpenAIStream, StreamingTextResponse } from 'ai'
@@ -11,9 +12,10 @@ const openai = new OpenAI({
 export const runtime = 'edge'
 
 export async function POST(req: Request) {
+  console.log('call api/chat/route');
+
   // Extract the `prompt` from the body of the request
   const { messages } = await req.json()
-
   // Ask OpenAI for a streaming chat completion given the prompt
   const response = await openai.chat.completions.create({
     model: 'ft:gpt-4o-mini-2024-07-18:jesse::9uG5IwOR',
@@ -32,7 +34,6 @@ export async function POST(req: Request) {
     // max_tokens: 64,
     top_p: 1
   })
-
   // Convert the response into a friendly text-stream
   const stream = OpenAIStream(response)
   // Respond with the stream
