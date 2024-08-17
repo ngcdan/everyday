@@ -17,8 +17,11 @@ export async function POST(_req: Request) {
   console.log(_req);
   try {
     // 1. Read data ports from `ports.json`
-    const portsData = await fs.readFile('data/ports.json', 'utf8');
-    const ports = JSON.parse(portsData);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/data/ports.json`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch ports.json');
+    }
+    const ports = await response.json();
     const transformedPorts = transformPortData(ports);
 
     // 3. Extract pickUpAddress, deliveryAddress, transportationMethod from request body
