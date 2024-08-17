@@ -17,7 +17,7 @@ export async function POST(_req: Request) {
   console.log(_req);
   try {
     // 1. Read data ports from `ports.json`
-    const portsData = await fs.readFile('public/data/ports.json', 'utf8');
+    const portsData = await fs.readFile('data/ports.json', 'utf8');
     const ports = JSON.parse(portsData);
     const transformedPorts = transformPortData(ports);
 
