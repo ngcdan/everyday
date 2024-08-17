@@ -13,6 +13,7 @@
     "tune": "ts-node -O {\\\"module\\\":\\\"commonjs\\\"} scripts/fine-tune.ts"
   },
   "dependencies": {
+    "@mapbox/mapbox-sdk": "^0.16.0",
     "@tailwindcss/forms": "^0.5.7",
     "@types/node": "20.5.7",
     "@vercel/postgres": "^0.5.1",
@@ -41,6 +42,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.1",
+    "@types/mapbox__mapbox-sdk": "^0.15.1",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.14",
     "@vercel/style-guide": "^5.0.1",
