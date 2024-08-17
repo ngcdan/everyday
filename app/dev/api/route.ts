@@ -98,7 +98,19 @@ function findNearestPort(coords: number[], ports: any[]): any {
       nearestPort = port;
     }
   }
-  return nearestPort;
+
+  if (!nearestPort) {
+    return null;
+  }
+
+  const googleMapsLink = `https://www.google.com/maps/search/?api=1&query=${nearestPort.coordinates[1]},${nearestPort.coordinates[0]}`
+  const estTimeHours = minDistance / 50;
+  return {
+    ...nearestPort,
+    distance: minDistance.toFixed(2),
+    estTimeHours,
+    googleMapsLink
+  };
 }
 
 function transformPortData(data: any[]) {
@@ -118,7 +130,7 @@ function transformPortData(data: any[]) {
       name: name,
       address: portAddress,
       country: country,
-      unlocs: unlocs
+      unlocs: unlocs,
     };
 
     result.push(newEntry);
