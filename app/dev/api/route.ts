@@ -48,8 +48,6 @@ export async function POST(_req: Request) {
     const pickUpCoords: number[] = pickUpResponse.body.features[0].center;
     const deliveryCoords: number[] = deliveryResponse.body.features[0].center;
 
-    console.log(transformedPorts);
-
     // 6. Find the nearest ports
     const nearestPickUpPort = findNearestPort(pickUpCoords, transformedPorts);
     const nearestDeliveryPort = findNearestPort(deliveryCoords, transformedPorts);
