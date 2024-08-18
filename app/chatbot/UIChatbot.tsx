@@ -45,8 +45,7 @@ export function Message({ role, content }: MessageProps) {
         <div className="w-full mt-1 prose break-words prose-p:leading-relaxed">
           {/* {content} */}
           <div className="prose prose-sm sm:prose lg:prose-lg xl:prose-xl dark:prose-dark">
-            <ReactMarkdown children={content} remarkPlugins={[remarkGfm]}
-              rehypePlugins={[rehypeRaw, rehypeHighlight]}
+            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw, rehypeHighlight]}
               components={{
                 code({ node, inline, className, children, ...props }: any) {
                   const match = /language-(\w+)/.exec(className || '');
@@ -58,12 +57,13 @@ export function Message({ role, content }: MessageProps) {
                     </pre>
                   ) : (
                     <code className="bg-gray-200 rounded p-1" {...props}>
-                      {/* {children} */}
                       {String(children).replace(/\n$/, '')}
                     </code>
                   );
                 },
-              }} />
+              }} >
+              {content}
+            </ReactMarkdown>
           </div>
         </div>
       </div>
