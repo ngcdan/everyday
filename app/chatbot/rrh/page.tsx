@@ -1,53 +1,19 @@
 "use client";
 
-import React, { useRef } from "react";
-import { useChat as useAiChat } from "ai/react";
-import { ChatInput, ChatWindow, MessageProps } from "../UIChatbot";
-import { info } from "./config";
-
-interface UseChatResponse {
-  messages: MessageProps[];
-  input: string;
-  setInput: (value: string) => void;
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  isLoading: boolean;
-}
-
-function useChat(): UseChatResponse {
-  return useAiChat({
-    api: 'rrh/api',
-    onResponse: (response) => {
-      if (response.status === 429) {
-        window.alert("You have reached your request limit for the day.");
-        return;
-      }
-    },
-    onError: (error) => {
-      // Handle errors that occur during the request
-      if (error.cause) {
-        const errorMessage = error.message;
-        if (errorMessage.startsWith("Country, region, or territory not supported")) {
-          window.alert("Your location is not supported by this service.");
-        } else {
-          window.alert("An unexpected error occurred." + errorMessage);
-        }
-      } else {
-        window.alert("An unexpected error occurred.");
-      }
-    },
-  });
-}
-
-const examples = [
-  "/start python",
-  "Yêu có cần tỏ tình, cưới có cần cầu hôn?",
-  "Tâm trạng cho ngày mới?",
-]
+import React, { useRef, useState } from "react";
+import { ChatInput, ChatWindow, useChat } from "../UIChatbot";
+import { info, examples } from "./config";
 
 export default function Chat() {
+  const [alertMessage, setAlertMessage] = useState<string | null>(null);
+
+  const closeModal = () => {
+    setAlertMessage(null);
+  };
+
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
-  const { messages, input, setInput, handleSubmit, isLoading } = useChat();
+  const { messages, input, setInput, handleSubmit, isLoading } = useChat('rrh/api', setAlertMessage);
 
   return (
     <main className="flex flex-col items-center justify-between pb-40">
@@ -60,6 +26,18 @@ export default function Chat() {
         setInput={setInput}
         handleSubmit={handleSubmit}
         isLoading={isLoading} />
+
+      {alertMessage && (
+        <div className="modal modal-open">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">Alert</h3>
+            <p className="py-4">{alertMessage}</p>
+            <div className="modal-action">
+              <button className="btn" onClick={closeModal}>Close</button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

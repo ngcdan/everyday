@@ -1,55 +1,20 @@
 "use client";
 
-import React, { useRef } from "react";
-import { useChat as useAiChat } from "ai/react";
-import { ChatInput, ChatWindow, MessageProps } from "../UIChatbot";
-import { info } from "./config";
+import React, { useRef, useState } from "react";
+import { ChatInput, ChatWindow, useChat } from "../UIChatbot";
+import { examples, info } from "./config";
 
-interface UseChatResponse {
-  messages: MessageProps[];
-  input: string;
-  setInput: (value: string) => void;
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  isLoading: boolean;
-}
+export default function LearnEverythingBot() {
 
-function useChat(): UseChatResponse {
-  return useAiChat({
-    api: 'learneverything/api',
-    onResponse: (response) => {
-      if (response.status === 429) {
-        window.alert("You have reached your request limit for the day.");
-        return;
-      }
-    },
-    onError: (error) => {
-      // Handle errors that occur during the request
-      console.log(error);
-      if (error.cause) {
-        const errorMessage = error.message;
-        if (errorMessage.startsWith("Country, region, or territory not supported")) {
-          window.alert("Your location is not supported by this service.");
-        } else {
-          window.alert("An unexpected error occurred." + errorMessage);
-        }
-      } else {
-        window.alert("An unexpected error occurred.");
-      }
-    },
-  });
+  const [alertMessage, setAlertMessage] = useState<string | null>(null);
 
-}
+  const closeModal = () => {
+    setAlertMessage(null);
+  };
 
-const examples = [
-  "Agile development",
-  "Introduction to Docker",
-  "Learn Python in Y minutes",
-]
-
-export default function EmmaChatBot() {
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
-  const { messages, input, setInput, handleSubmit, isLoading } = useChat();
+  const { messages, input, setInput, handleSubmit, isLoading } = useChat('learneverything/api', setAlertMessage);
 
   return (
     <main className="flex flex-col items-center justify-between pb-40">
@@ -62,6 +27,17 @@ export default function EmmaChatBot() {
         setInput={setInput}
         handleSubmit={handleSubmit}
         isLoading={isLoading} />
+      {alertMessage && (
+        <div className="modal modal-open">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">Alert</h3>
+            <p className="py-4">{alertMessage}</p>
+            <div className="modal-action">
+              <button className="btn" onClick={closeModal}>Close</button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

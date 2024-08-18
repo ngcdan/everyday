@@ -4,7 +4,6 @@ export const model = "fine-tuned-model-id";
 export const temperature = 0.7;
 
 export const examples = [
-  "/start python",
   "Yêu có cần tỏ tình, cưới có cần cầu hôn?",
   "Tâm trạng cho ngày mới?",
 ]

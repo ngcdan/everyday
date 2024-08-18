@@ -1,4 +1,5 @@
 import React from "react";
+import { useChat as useAiChat } from "ai/react";
 import { Send, Loader } from 'react-feather';
 import Image from "next/image";
 import clsx from "clsx";
@@ -35,15 +36,12 @@ export interface MessageProps {
   content: string;
 }
 export function Message({ role, content }: MessageProps) {
-  console.log(content);
-
   return (
     <div
       className={clsx("flex-container w-full border-b border-gray-200 py-8", role === "user" ? "bg-white" : "bg-gray-100",)}>
       <div className="flex items-start w-full max-w-screen-md px-0 space-x-4 md:px-5">
         <Avatar role={role} />
         <div className="w-full mt-1 prose break-words prose-p:leading-relaxed">
-          {/* {content} */}
           <div className="prose prose-sm sm:prose lg:prose-lg xl:prose-xl dark:prose-dark">
             <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw, rehypeHighlight]}
               components={{
@@ -170,4 +168,28 @@ export function ChatInput(props: ChatInputProps) {
       </p>
     </div>
   );
+}
+
+interface UseChatResponse {
+  messages: MessageProps[];
+  input: string;
+  setInput: (value: string) => void;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  isLoading: boolean;
+}
+
+export function useChat(api: string, setAlertMessage: (message: string) => void): UseChatResponse {
+
+  return useAiChat({
+    api,
+    onResponse: (response) => {
+      if (response.status === 429) {
+        setAlertMessage("You have reached your request limit for the day.");
+        return;
+      }
+    },
+    onError: (_error) => {
+      setAlertMessage("Your location is not supported by this service.");
+    },
+  });
 }
