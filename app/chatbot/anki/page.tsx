@@ -13,13 +13,13 @@ interface UseChatResponse {
   isLoading: boolean;
 }
 
-function useChat(showToast: (message: string, type: "success" | "error") => void): UseChatResponse {
+function useChat(setAlertMessage: (message: string) => void): UseChatResponse {
 
   return useAiChat({
     api: 'anki/api',
     onResponse: (response) => {
       if (response.status === 429) {
-        showToast("You have reached your request limit for the day.", "error");
+        setAlertMessage("You have reached your request limit for the day.");
         return;
       }
     },
@@ -28,30 +28,27 @@ function useChat(showToast: (message: string, type: "success" | "error") => void
       if (error.cause) {
         const errorMessage = error.message;
         if (errorMessage.startsWith("Country, region, or territory not supported")) {
-          showToast("Your location is not supported by this service.", "error");
+          setAlertMessage("Your location is not supported by this service.");
         } else {
-          showToast("An unexpected error occurred: " + errorMessage, "error");
+          setAlertMessage("An unexpected error occurred: " + errorMessage);
         }
       } else {
-        showToast("An unexpected error occurred.", "error");
+        setAlertMessage("An unexpected error occurred.");
       }
     },
   });
 }
 
 export default function Chat() {
-  const [toastMessage, setToastMessage] = useState<string | null>(null);
-  const [toastType, setToastType] = useState<"success" | "error">("success");
+  const [alertMessage, setAlertMessage] = useState<string | null>(null);
 
-  const showToast = (message: string, type: "success" | "error") => {
-    setToastMessage(message);
-    setToastType(type);
-    setTimeout(() => setToastMessage(null), 5000); // Hide toast after 5 seconds
+  const closeModal = () => {
+    setAlertMessage(null);
   };
 
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
-  const { messages, input, setInput, handleSubmit, isLoading } = useChat(showToast);
+  const { messages, input, setInput, handleSubmit, isLoading } = useChat(setAlertMessage);
 
   return (
     <main className="flex flex-col items-center justify-between pb-40">
@@ -64,10 +61,14 @@ export default function Chat() {
         handleSubmit={handleSubmit}
         isLoading={isLoading} />
 
-      {toastMessage && (
-        <div className={`toast toast-${toastType} fixed bottom-5 right-5`}>
-          <div className="alert alert-${toastType}">
-            <span>{toastMessage}</span>
+      {alertMessage && (
+        <div className="modal modal-open">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">Alert</h3>
+            <p className="py-4">{alertMessage}</p>
+            <div className="modal-action">
+              <button className="btn" onClick={closeModal}>Close</button>
+            </div>
           </div>
         </div>
       )}
