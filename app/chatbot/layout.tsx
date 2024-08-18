@@ -7,9 +7,8 @@ import { ChevronDown } from 'react-feather'
 
 const chatbotOptions = [
   { id: 'rrh', name: 'Red Right Hand' },
-  { id: 'flirter', name: 'Emma Chat' },
+  { id: 'anki', name: 'Anki Maker' },
   { id: 'learneverything', name: 'Learn Everything' },
-  { id: 'translator', name: 'Translator' },
 ];
 
 export default function ChatbotLayout({ children, }: { children: React.ReactNode; }) {

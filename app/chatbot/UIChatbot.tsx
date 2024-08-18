@@ -3,6 +3,11 @@ import { Send, Loader } from 'react-feather';
 import Image from "next/image";
 import clsx from "clsx";
 import Textarea from "react-textarea-autosize";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm'; // Để hỗ trợ GitHub Flavored Markdown (GFM)
+import rehypeRaw from 'rehype-raw'; // Để xử lý HTML trong markdown
+import rehypeHighlight from 'rehype-highlight'; // Hỗ trợ highlight code blocks
+import 'highlight.js/styles/github.css';
 
 export type Role = 'user' | 'system' | 'assistant' | 'function';
 
@@ -30,13 +35,35 @@ export interface MessageProps {
   content: string;
 }
 export function Message({ role, content }: MessageProps) {
+  console.log(content);
+
   return (
     <div
       className={clsx("flex-container w-full border-b border-gray-200 py-8", role === "user" ? "bg-white" : "bg-gray-100",)}>
       <div className="flex items-start w-full max-w-screen-md px-0 space-x-4 md:px-5">
         <Avatar role={role} />
         <div className="w-full mt-1 prose break-words prose-p:leading-relaxed">
-          {content}
+          {/* {content} */}
+          <div className="prose prose-sm sm:prose lg:prose-lg xl:prose-xl dark:prose-dark">
+            <ReactMarkdown children={content} remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeRaw, rehypeHighlight]}
+              components={{
+                code({ node, inline, className, children, ...props }: any) {
+                  const match = /language-(\w+)/.exec(className || '');
+                  return !inline && match ? (
+                    <pre className={`rounded-md my-2 ${className}`} {...props}>
+                      <code className={`language-${match[1]}`}>
+                        {String(children).replace(/\n$/, '')}
+                      </code>
+                    </pre>
+                  ) : (
+                    <code className="bg-gray-200 rounded p-1" {...props}>
+                      {children}
+                    </code>
+                  );
+                },
+              }} />
+          </div>
         </div>
       </div>
     </div>

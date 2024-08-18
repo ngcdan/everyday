@@ -4,12 +4,11 @@ export const model = "fine-tuned-model-id";
 export const temperature = 0.7;
 
 export const examples = [
-  "Yêu có cần tỏ tình, cưới có cần cầu hôn?",
-  "Tâm trạng cho ngày mới?",
+  "Background Script/Service Workers in the context of Chrome Extension?",
 ]
 
 export const info: ChatBotInfo = {
-  id: 'emma',
-  name: 'Emma',
-  description: 'Flirty and funny Gen-Z girlfriend.'
+  id: 'anki',
+  name: 'Anki Maker',
+  description: 'Helps you create Anki cards quickly and easily using AI.'
 }
