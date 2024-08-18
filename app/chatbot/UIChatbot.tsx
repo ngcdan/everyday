@@ -58,7 +58,8 @@ export function Message({ role, content }: MessageProps) {
                     </pre>
                   ) : (
                     <code className="bg-gray-200 rounded p-1" {...props}>
-                      {children}
+                      {/* {children} */}
+                      {String(children).replace(/\n$/, '')}
                     </code>
                   );
                 },
