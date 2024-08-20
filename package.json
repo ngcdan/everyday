@@ -23,11 +23,11 @@
     "clsx": "^2.0.0",
     "dotenv": "^16.3.1",
     "fs": "0.0.1-security",
+    "fs-extra": "^11.2.0",
     "gray-matter": "^4.0.3",
-    "lexical": "^0.13.1",
     "next": "^14.0.2",
     "next-auth": "^5.0.0-beta.4",
-    "openai": "4.2.0",
+    "openai": "4.56.0",
     "postcss": "8.4.31",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -46,17 +46,22 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.1",
+    "@types/fs-extra": "^11.0.4",
     "@types/mapbox__mapbox-sdk": "^0.15.1",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.14",
     "@vercel/style-guide": "^5.0.1",
     "daisyui": "^4.12.10",
-    "dotenv": "^16.3.1",
     "eslint": "^8.52.0",
     "eslint-config-next": "^14.0.0",
     "eslint-config-prettier": "9.0.0",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.4",
     "typescript": "5.2.2"
+  },
+  "pnpm": {
+    "overrides": {
+      "graceful-fs": "^4.2.11"
+    }
   }
 }

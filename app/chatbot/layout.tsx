@@ -9,6 +9,7 @@ const chatbotOptions = [
   { id: 'rrh', name: 'Red Right Hand' },
   { id: 'anki', name: 'Anki Maker' },
   { id: 'learneverything', name: 'Learn Everything' },
+  { id: 'tts', name: 'Text to Speech' },
 ];
 
 export default function ChatbotLayout({ children, }: { children: React.ReactNode; }) {

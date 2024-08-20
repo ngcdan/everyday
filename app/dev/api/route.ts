@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import mapbox from '@mapbox/mapbox-sdk/services/geocoding';
-import { promises as fs } from 'fs';
 
 const mapboxClient = mapbox({ accessToken: process.env.MAPBOX_ACCESS_TOKEN || '' });
 

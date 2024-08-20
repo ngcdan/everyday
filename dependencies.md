@@ -20,3 +20,8 @@ npm install remark remark-html
 ```
 pnpm add -D daisyui@latest
 ```
+
+[Marked](https://github.com/markedjs/marked): A markdown parser and compiler. Built for speed.
+```
+pnpm install marked
+```
