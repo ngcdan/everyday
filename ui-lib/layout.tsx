@@ -1,4 +1,5 @@
 "use-client"
+
 import { useState } from 'react';
 import { FoldableExample } from './foldable';
 import ModelExample from './model';
@@ -14,6 +15,7 @@ const components: ComponentType = {
 }
 
 export default function UIExamplesLayout() {
+
   const [activeComponent, setActiveComponent] = useState('Foldable');
 
   return (
