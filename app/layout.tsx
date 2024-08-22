@@ -1,6 +1,6 @@
 import '@/styles/global.css';
 import { Search, Sun, Menu, Moon } from 'react-feather';
-import { roboto } from '@/lib/fonts';
+import { roboto } from '@/app/dev/lib/fonts';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image'
@@ -39,27 +39,22 @@ export default function RootLayout({
               <Link
                 className={`block select-none space-y-1 rounded-full px-4 py-2
                 leading-none no-underline outline-none transition-colors hover:bg-gray-300 focus:bg-gray-300`}
-                href="/about" >About</Link>
+                href="/everyday/posts" >Archive</Link>
 
               <Link
                 className={`block select-none space-y-1 rounded-full px-4 py-2
                 leading-none no-underline outline-none transition-colors hover:bg-gray-300 focus:bg-gray-300`}
-                href="/everyday" >Archive</Link>
+                href="/everyday/snippets">Snippets</Link>
 
               <Link
                 className={`block select-none space-y-1 rounded-full px-4 py-2
                 leading-none no-underline outline-none transition-colors hover:bg-gray-300 focus:bg-gray-300`}
-                href="/snippets">Snippets</Link>
+                href="/everyday/quotes" >Quotes</Link>
 
               <Link
                 className={`block select-none space-y-1 rounded-full px-4 py-2
                 leading-none no-underline outline-none transition-colors hover:bg-gray-300 focus:bg-gray-300`}
-                href="/quotes" >Quotes</Link>
-
-              <Link
-                className={`block select-none space-y-1 rounded-full px-4 py-2
-                leading-none no-underline outline-none transition-colors hover:bg-gray-300 focus:bg-gray-300`}
-                href="/tools">Tools</Link>
+                href="/dev/tools">Tools</Link>
 
               <Link
                 className={`block select-none space-y-1 rounded-full px-4 py-2

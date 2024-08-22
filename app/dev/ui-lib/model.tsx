@@ -1,6 +1,6 @@
 "use client"
 
-import { UIModel } from "@/lib/components/UIModel";
+import { UIModel } from "@/app/dev/lib/components/UIModel";
 import React, { useState } from "react";
 
 // Example usage

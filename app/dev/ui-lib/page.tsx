@@ -1,3 +1,5 @@
+"use-client"
+
 import { Metadata } from 'next'
 import { FoldableExample } from './foldable';
 import ModelExample from './model';

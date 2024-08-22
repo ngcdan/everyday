@@ -1,5 +1,4 @@
-//layout.tsx - Đóng vai trò là layout chung cho các page con trong app
-'use client'
+"use-client"
 import { useState } from 'react';
 import { FoldableExample } from './foldable';
 import ModelExample from './model';

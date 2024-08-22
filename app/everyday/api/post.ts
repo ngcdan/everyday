@@ -28,7 +28,7 @@ export function getSortedPostsData() {
     };
   });
   // Sort posts by date
-  return allPostsData.sort((a, b) => {
+  return allPostsData.sort((a: any, b: any) => {
     if (a.date < b.date) {
       return 1;
     } else {
@@ -58,7 +58,7 @@ export function getAllPostIds() {
 
 // --------------------------------
 // GET THE DATA OF A SINGLE POST FROM THE ID
-export async function getPostData(slug) {
+export async function getPostData(slug: any) {
   const fullPath = path.join(postsDirectory, `${slug}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
 
@@ -78,3 +78,6 @@ export async function getPostData(slug) {
     ...matterResult.data,
   };
 }
+
+
+

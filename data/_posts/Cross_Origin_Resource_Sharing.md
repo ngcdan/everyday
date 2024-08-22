@@ -7,7 +7,7 @@ tags: dev, coding
 ### Các khái niệm chính:
 
 1. **CORS (Cross-Origin Resource Sharing)**:
-   - **CORS** là một cơ chế bảo mật cho phép hoặc ngăn chặn các yêu cầu giữa các gốc khác nhau (cross-origin requests). Khi bạn cố gắng truy cập tài nguyên từ một domain khác với domain của trang web hiện tại, trình duyệt sẽ kiểm tra xem server đích có cho phép yêu cầu đó không.
+   - **CORS** là một cơ chế bảo mật cho phép hoặc ngăn chặn các yêu cầu giữa các origin khác nhau (cross-origin requests). Khi bạn cố gắng truy cập tài nguyên từ một domain khác với domain của trang web hiện tại, trình duyệt sẽ kiểm tra xem server đích có cho phép yêu cầu đó không.
    - Ví dụ: Nếu ứng dụng của bạn chạy trên `http://localhost:5173` và bạn muốn gọi API từ `http://localhost:3000`, đây là một yêu cầu cross-origin.
 
 2. **Preflight Request**:
@@ -33,6 +33,7 @@ Bạn có thể cấu hình CORS trong Next.js bằng cách thêm các header CO
 #### Ví dụ:
 
 ```typescript
+
 import OpenAI from 'openai'
 import fs from 'fs-extra';
 import path from 'path';
@@ -101,6 +102,7 @@ export async function POST(req: Request) {
     });
   }
 }
+
 ```
 
 ### Giải thích:

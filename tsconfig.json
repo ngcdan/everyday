@@ -36,7 +36,8 @@
     ".next/types/**/*.ts",
     "app/lib/placeholder-data.js",
     "scripts/seed.js",
-    "next.config.js"
+    "next.config.js",
+    "app/dev/lib/post.js"
   ],
   "exclude": [
     "node_modules"

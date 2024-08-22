@@ -1,12 +1,12 @@
 import { Metadata } from 'next';
-import { getAllPostIds } from './api/post';
-import { UIBlogIndex } from '../dev/lib/components/UIBlog';
+import { getAllPostIds } from '../api/post';
+import { UIBlogIndex } from '@/app/dev/lib/components/UIBlog';
 
 export const metadata: Metadata = {
   title: 'Archive',
 };
 
-export default async function EverydayPage() {
+export default async function PostListPage() {
   let postIds = getAllPostIds();
 
   return (

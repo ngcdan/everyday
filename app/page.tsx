@@ -28,17 +28,17 @@ export default async function Page() {
 
       <ol className="px-2 mx-3 my-2 list-decimal">
         <li className="mb-2">
-          <Link className={`font-medium`} href="/everyday">Everyday : </Link>
+          <Link className={`font-medium`} href="/everyday/posts/">Everyday : </Link>
           <span className=''>Writing about what I learn everyday.</span>
         </li>
 
         <li className="mb-2">
-          <Link className={`font-medium`} href="/chatbot/rrh" >Red Right Hand: </Link>
+          <Link className={`font-medium`} href="/dev/chatbot/rrh" >Red Right Hand: </Link>
           <span className=''>AI chat bot built with GPT-4o-mini, and fine-tuned.</span>
         </li>
 
         <li className="mb-2">
-          <Link className={`font-medium`} href="/tools" > Tools : </Link>
+          <Link className={`font-medium`} href="/dev/tools" > Tools : </Link>
           <span className=''>All the tools I use.</span>
         </li>
         <li className="mb-2">

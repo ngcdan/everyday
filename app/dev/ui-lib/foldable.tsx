@@ -1,7 +1,5 @@
-"use client"
-
-import Foldable from "@/lib/components/Foldable";
 import React from "react";
+import Foldable from "@/app/dev/lib/components/Foldable";
 
 // Example usage
 export class FoldableExample extends React.Component {

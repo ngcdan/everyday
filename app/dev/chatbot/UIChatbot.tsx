@@ -78,6 +78,7 @@ export interface ChatWindowProps {
   info: ChatBotInfo
 }
 export function ChatWindow({ messages, setInput, inputRef, examples, info }: ChatWindowProps) {
+
   return messages.length > 0 ? (
     messages.map((message, i) => (
       <Message key={i} role={message.role} content={message.content} />

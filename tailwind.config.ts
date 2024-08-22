@@ -48,7 +48,8 @@ const config: Config = {
   },
   //plugins: [require('@tailwindcss/forms')],
   plugins: [
-    daisyui
+    daisyui,
+    require('@tailwindcss/typography')
   ],
   daisyui: {
     themes: ["light", "dark"],
