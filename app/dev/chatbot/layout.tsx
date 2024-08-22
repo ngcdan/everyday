@@ -6,9 +6,8 @@ import { useState } from 'react';
 import { ChevronDown } from 'react-feather'
 
 const chatbotOptions = [
-  { id: 'rrh', name: 'Red Right Hand' },
   { id: 'anki', name: 'Anki Maker' },
-  { id: 'learneverything', name: 'Learn Everything' },
+  { id: 'rrh', name: 'Red Right Hand' },
   { id: 'tts', name: 'Text to Speech' },
 ];
 
@@ -26,8 +25,8 @@ export default function ChatbotLayout({ children, }: { children: React.ReactNode
   return (
     <div className="flex h-screen bg-gray-100">
       <div className="flex flex-col flex-1">
-        {/* Header */}
         <header className="flex items-center justify-end bg-white shadow-md">
+
           <div className="relative px-2">
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)} // Toggle dropdown
@@ -39,7 +38,8 @@ export default function ChatbotLayout({ children, }: { children: React.ReactNode
               <ul className="absolute right-0 z-10 w-40 mt-2 text-sm bg-white rounded shadow-md">
                 {chatbotOptions.map(bot => (
                   <li key={bot.id}>
-                    <Link href={`/chatbot/${bot.id}`}
+                    <Link
+                      href={`/dev/chatbot/${bot.id}`}
                       className="block px-2 py-1 hover:bg-gray-100 hover:text-blue-600"
                       onClick={() => onSwitchBot(bot.id)} >
                       {bot.name}
@@ -50,8 +50,9 @@ export default function ChatbotLayout({ children, }: { children: React.ReactNode
             )}
           </div>
         </header>
+
         {/* Content Area */}
-        <main className="flex-1 p-4 overflow-auto">
+        <main className="flex flex-col flex-1 p-4 overflow-auto">
           {children}
         </main>
       </div>

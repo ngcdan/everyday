@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useState } from "react";
-import { ChatInput, ChatWindow, useChat } from "../UIChatbot";
 import { info, examples } from "./config";
+import { ChatInput, ChatWindow, useChat } from "../UIChatbot";
 
 export default function Chat() {
   const [alertMessage, setAlertMessage] = useState<string | null>(null);
@@ -15,15 +15,10 @@ export default function Chat() {
   const { messages, input, setInput, handleSubmit, isLoading } = useChat('anki/api', setAlertMessage);
 
   return (
-    <main className="flex flex-col items-center justify-between pb-40">
+    <main className="flex flex-col items-center max-w-screen-lg w-full mx-auto">
       <ChatWindow messages={messages} setInput={setInput} inputRef={inputRef} examples={examples} info={info} />
-      <ChatInput
-        formRef={formRef}
-        inputRef={inputRef}
-        input={input}
-        setInput={setInput}
-        handleSubmit={handleSubmit}
-        isLoading={isLoading} />
+      <ChatInput formRef={formRef} inputRef={inputRef}
+        input={input} setInput={setInput} handleSubmit={handleSubmit} isLoading={isLoading} />
 
       {alertMessage && (
         <div className="modal modal-open">
@@ -36,6 +31,7 @@ export default function Chat() {
           </div>
         </div>
       )}
+
     </main>
   );
 }

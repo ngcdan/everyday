@@ -76,10 +76,11 @@ img {
 }
 
 .converted-html {
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
   max-width: none;
   overflow-wrap: break-word;
-  /* font-size: 1.125rem; */
+  font-size: 1.125rem;
+  line-height: 1.7
 }
 
 /* Heading styles within .converted-html */

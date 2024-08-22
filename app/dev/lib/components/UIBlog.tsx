@@ -45,7 +45,7 @@ export function UIBlogContent({ title, date, contentHtml }: UIBlogContentProps) 
     <div className="max-w-5xl px-4 py-8 mx-auto sm:px-6 lg:px-8">
       <h2 className="mb-4 text-3xl font-extrabold leading-tight text-gray-900">{title}</h2>
       <div className="mb-8 text-gray-600 text-md">{`Posted On ${date}`}</div>
-      <div className="prose prose-lg max-w-none converted-html"
+      <div className="prose converted-html"
         dangerouslySetInnerHTML={{ __html: contentHtml }} />
     </div>
 

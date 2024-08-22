@@ -17,7 +17,6 @@ export default function Chat() {
 
   return (
     <main className="flex flex-col items-center justify-between pb-40">
-      {/* <div className="absolute justify-between hidden w-full px-5 top-5 sm:flex"></div> */}
       <ChatWindow messages={messages} setInput={setInput} inputRef={inputRef} examples={examples} info={info} />
       <ChatInput
         formRef={formRef}

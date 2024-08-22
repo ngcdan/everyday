@@ -6,6 +6,8 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || ''
 })
 
+
+
 export async function OPTIONS(_req: Request) {
   const headers = {
     "Access-Control-Allow-Origin": "*",

@@ -33,7 +33,7 @@ export default async function Page() {
         </li>
 
         <li className="mb-2">
-          <Link className={`font-medium`} href="/dev/chatbot/rrh" >Red Right Hand: </Link>
+          <Link className={`font-medium`} href="/dev/chatbot/anki" >Anki Maker: </Link>
           <span className=''>AI chat bot built with GPT-4o-mini, and fine-tuned.</span>
         </li>
 

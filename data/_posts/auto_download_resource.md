@@ -10,7 +10,7 @@ tags: dev, coding, javascript
 
     Dưới đây là cách cập nhật hàm `toSpeech` của bạn để tự động tải xuống file audio:
 
-    ```
+    ```typescript
     const toSpeech = async () => {
       const response = await fetch('/chatbot/tts/api', {
         method: 'POST',
@@ -42,7 +42,6 @@ tags: dev, coding, javascript
       // Giải phóng URL sau khi tải xuống
       URL.revokeObjectURL(url);
     }
-
     ```
 
     ### Giải thích:

@@ -32,12 +32,8 @@ export default function Chat() {
     <main className="flex flex-col items-center justify-between pb-40">
       <div className="relative w-full max-w-screen-md px-4 pt-3 pb-2 bg-white border border-gray-200 shadow-lg rounded-xl sm:pb-3 sm:pt-4">
         <Textarea
-          tabIndex={0}
-          required
-          rows={1}
-          autoFocus
-          placeholder="Send a message"
-          value={text}
+          tabIndex={0} required rows={1} autoFocus
+          placeholder="Send a message" value={text}
           onChange={(e) => setText(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter" && !e.shiftKey) {

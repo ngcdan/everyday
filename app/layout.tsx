@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="light">
       <body className={`${roboto.className} antialiased text-lg grid min-h-screen grid-rows-[auto_1fr_auto] bg-background text-foreground`}>
         <header className='sticky top-0 z-40 w-full border-b bg-background/75 backdrop-blur bg-stone-100 text-stone-700k'>
           <div className='container flex items-center h-12 p-4 mx-auto md:p-6 max-w-7xl'>
@@ -86,10 +86,8 @@ export default function RootLayout({
         </header>
 
 
-        <div className="container w-full mx-auto mt-5 max-w-7xl">
-          <main className="flex flex-col w-full h-full overflow-y-auto grow">
-            {children}
-          </main>
+        <div className="flex flex-col grow w-full h-full mt-5 overflow-hidden">
+          {children}
         </div>
 
       </body>

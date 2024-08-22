@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useChat as useAiChat } from "ai/react";
 import { Send, Loader } from 'react-feather';
 import Image from "next/image";
 import clsx from "clsx";
 import Textarea from "react-textarea-autosize";
 import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm'; // Để hỗ trợ GitHub Flavored Markdown (GFM)
-import rehypeRaw from 'rehype-raw'; // Để xử lý HTML trong markdown
-import rehypeHighlight from 'rehype-highlight'; // Hỗ trợ highlight code blocks
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
+import rehypeHighlight from 'rehype-highlight';// Hỗ trợ highlight code blocks
 import 'highlight.js/styles/github.css';
 
 export type Role = 'user' | 'system' | 'assistant' | 'function';
@@ -23,11 +23,14 @@ interface AvatarProps {
   role: Role;
 }
 export default function Avatar({ role }: AvatarProps) {
-  return role === "user" ? (
-    <Image src="/images/avatar.jpg" alt="User" width={30} height={30} />
-  ) : (
-    <Image src="/images/tommy.png" alt="Tommy" width={30} height={30} />
-  );
+  let sourceUrl = role === 'user' ? '/images/avatar.jpg' : '/images/tommy.png';
+  return (
+    <div className="avatar online mx-2">
+      <div className="w-10 rounded-full">
+        <Image src={sourceUrl} alt="Role" width={30} height={30} />
+      </div>
+    </div>
+  )
 }
 
 /* ---------- Message: Displays individual messages with appropriate styling.*/
@@ -36,35 +39,27 @@ export interface MessageProps {
   content: string;
 }
 export function Message({ role, content }: MessageProps) {
+  console.log('------------ Content Message --------------------');
+  console.log(content);
+
   return (
-    <div
-      className={clsx("flex-container w-full border-b border-gray-200 py-8", role === "user" ? "bg-white" : "bg-gray-100",)}>
-      <div className="flex items-start w-full max-w-screen-md px-0 space-x-4 md:px-5">
-        <Avatar role={role} />
-        <div className="w-full mt-1 prose break-words prose-p:leading-relaxed">
-          <div className="prose prose-sm sm:prose lg:prose-lg xl:prose-xl dark:prose-dark">
-            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw, rehypeHighlight]}
-              components={{
-                code({ node, inline, className, children, ...props }: any) {
-                  const match = /language-(\w+)/.exec(className || '');
-                  return !inline && match ? (
-                    <pre className={`rounded-md my-2 ${className}`} {...props}>
-                      <code className={`language-${match[1]}`}>
-                        {String(children).replace(/\n$/, '')}
-                      </code>
-                    </pre>
-                  ) : (
-                    <code className="bg-gray-200 rounded p-1" {...props}>
-                      {String(children).replace(/\n$/, '')}
-                    </code>
-                  );
-                },
-              }} >
-              {content}
-            </ReactMarkdown>
+    <div>
+      {role === 'user' ? (
+        <div className={clsx("border-b py-3 chat chat-end")}>
+          <div className="chat-bubble chat-bubble-info">{content}</div>
+        </div>
+      ) : (
+        <div className={clsx("border-b border-gray-200 py-3 bg-gray-100")}>
+          <div className={clsx("flex space-x-4 px-4 w-full items-start")}>
+            <Avatar role={role} />
+            <div className="prose prose-lg max-w-none converted-html">
+              <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw, rehypeHighlight]} >
+                {content}
+              </ReactMarkdown>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
@@ -78,13 +73,22 @@ export interface ChatWindowProps {
   info: ChatBotInfo
 }
 export function ChatWindow({ messages, setInput, inputRef, examples, info }: ChatWindowProps) {
+  const chatWindowRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (chatWindowRef.current) {
+      chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   return messages.length > 0 ? (
-    messages.map((message, i) => (
-      <Message key={i} role={message.role} content={message.content} />
-    ))
+    <div ref={chatWindowRef} className="max-h-[70vh] max-w-screen-lg w-full overflow-y-auto">
+      {messages.map((message, i) => (
+        <Message key={i} role={message.role} content={message.content} />
+      ))}
+    </div>
   ) : (
-    <div className="max-w-screen-md mx-5 border border-gray-200 rounded-md mt-15 sm:mx-0 sm:w-full">
+    <div className="max-w-screen-md mx-auto w-full border border-gray-200 rounded-md mt-15">
       <div className="flex flex-col space-y-4 p-7 sm:p-10">
         <Image src="/images/tommy.png" alt="Red Right Hand" width={200} height={200}
           className='p-1 rounded-md shadow-md' />
@@ -93,8 +97,7 @@ export function ChatWindow({ messages, setInput, inputRef, examples, info }: Cha
       </div>
       <div className="flex flex-col space-y-4 border-t border-gray-200 bg-gray-50 p-7 sm:p-10">
         {examples.map((example, i) => (
-          <button
-            key={i}
+          <button key={i}
             className="px-5 py-3 text-sm text-left text-gray-500 transition-all duration-75 bg-white border border-gray-200 rounded-md hover:border-black hover:text-gray-700 active:bg-gray-50"
             onClick={() => {
               setInput(example);
@@ -123,20 +126,13 @@ export function ChatInput(props: ChatInputProps) {
   const disabled = isLoading || input.length === 0;
 
   return (
-    <div className="fixed bottom-0 flex flex-col items-center w-full p-5 pb-3 space-y-3 bg-gradient-to-b from-transparent via-gray-100 to-gray-100 sm:px-0">
-      <form
-        ref={formRef}
-        onSubmit={handleSubmit}
-        className="relative w-full max-w-screen-md px-4 pt-3 pb-2 bg-white border border-gray-200 shadow-lg rounded-xl sm:pb-3 sm:pt-4" >
+    <div className="fixed bottom-0 max-w-screen-md w-full pb-3 space-y-3 bg-gradient-to-b from-transparent via-gray-100 to-gray-100">
+      <form ref={formRef} onSubmit={handleSubmit}
+        className="relative px-4 pt-3 pb-2 bg-white border border-gray-200 shadow-lg rounded-xl sm:pb-3 sm:pt-4" >
 
         <Textarea
-          ref={inputRef}
-          tabIndex={0}
-          required
-          rows={1}
-          autoFocus
-          placeholder="Send a message"
-          value={input}
+          ref={inputRef} tabIndex={0} required rows={1} autoFocus
+          placeholder="Send a message" value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter" && !e.shiftKey) {
@@ -154,8 +150,8 @@ export function ChatInput(props: ChatInputProps) {
               ? "cursor-not-allowed bg-white"
               : "bg-green-500 hover:bg-green-600",
           )}
-          disabled={disabled}
-        >
+          disabled={disabled} >
+
           {isLoading ? (
             <Loader className="w-4 h-4 animate-spin text-stone-600" />
           ) : (

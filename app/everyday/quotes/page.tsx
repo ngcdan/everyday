@@ -13,7 +13,10 @@ export default function Page() {
         <p className="text-center text-xl mt-5">
           Anki Card Creator is a tool that helps you create Anki cards quickly and easily using AI.
         </p>
+
+
         <SuggestCard />
+
         <div className="mt-5">
           <Bookmarklet />
         </div>

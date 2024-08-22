@@ -1,3 +1,4 @@
+
 import { ChatBotInfo } from "../UIChatbot";
 
 export const model = "fine-tuned-model-id";
@@ -5,6 +6,7 @@ export const temperature = 0.7;
 
 export const examples = [
   "Background Script/Service Workers in the context of Chrome Extension?",
+  "contagious",
 ]
 
 export const info: ChatBotInfo = {
