@@ -1,7 +1,7 @@
 ---
 title: 'Cấu hình CORS trong API Route của Next.js'
 date: '2024-08-20'
-tags: dev, coding
+tags: dev, coding, nextjs
 ---
 
 ### Các khái niệm chính:
