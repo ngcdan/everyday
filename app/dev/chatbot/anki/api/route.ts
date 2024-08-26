@@ -8,8 +8,7 @@ Second, optimize wording: The wording of your items must be optimized to make su
 The following is a model card-create template for you to study.
 `
 
-
-import { ChatBotConfig, createChatBotAPIHandler } from '../../api/ChatBotAPI'
+import { ChatBotConfig, createChatBotAPIHandler } from '@/app/api/OpenAIAPI';
 import { messages } from '../vocab_prompt'
 
 const headers = {
