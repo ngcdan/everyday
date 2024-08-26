@@ -13,7 +13,7 @@ export default function Chat() {
   };
 
   const toSpeech = async () => {
-    const response = await fetch('/chatbot/tts/api', {
+    const response = await fetch('/dev/chatbot/tts/api', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -7,6 +7,110 @@ import html from 'remark-html';
 const postsDirectory = path.join(process.cwd(), 'data/_posts');
 // const postsDirectory = path.resolve('data/_posts');
 
+
+interface PostId {
+  slug: string;
+  title: string;
+  date: string;
+}
+
+interface PostsByTags {
+  [tag: string]: PostId[];
+}
+
+interface PostsByYear {
+  [year: string]: PostsByTags;
+}
+
+export function getPostsGroupedByTags() {
+  const fileNames = fs.readdirSync(postsDirectory);
+  const postsByTags: any = {};
+  const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+
+  for (const fileName of fileNames) {
+    const fullPath = path.join(postsDirectory, fileName);
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+
+    const matterResult = matter(fileContents);
+    const { date, title, tags } = matterResult.data;
+
+    if (!dateRegex.test(date)) {
+      console.error(`Invalid date format in file: ${fileName}`);
+      continue;
+    }
+
+    const id = {
+      slug: fileName.replace(/\.md$/, ''),
+      title: title,
+      date: date
+    };
+
+    const tagList = tags.split(',').map((tag: string) => tag.trim());
+
+    tagList.forEach((tag: string) => {
+      if (!postsByTags[tag]) {
+        postsByTags[tag] = [];
+      }
+      postsByTags[tag].push(id);
+    });
+  }
+
+  // Sort posts in each tag group by date (newest to oldest)
+  for (const tag in postsByTags) {
+    postsByTags[tag].sort((a: any, b: any) => b.date.localeCompare(a.date));
+  }
+
+  return postsByTags;
+}
+
+export function getPostsGroupedByYearAndTags(): PostsByYear {
+  const fileNames = fs.readdirSync(postsDirectory);
+  const postsByYear: PostsByYear = {};
+  const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+
+  for (const fileName of fileNames) {
+    const fullPath = path.join(postsDirectory, fileName);
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+
+    const matterResult = matter(fileContents);
+    const { date, title, tags } = matterResult.data;
+
+    if (!dateRegex.test(date)) {
+      console.error(`Invalid date format in file: ${fileName}`);
+      continue;
+    }
+
+    const year = date.split('-')[0];
+    const id: PostId = {
+      slug: fileName.replace(/\.md$/, ''),
+      title: title,
+      date: date
+    };
+
+    const tagList = tags.split(',').map((tag: string) => tag.trim());
+
+    if (!postsByYear[year]) {
+      postsByYear[year] = {};
+    }
+
+    tagList.forEach((tag: string) => {
+      if (!postsByYear[year][tag]) {
+        postsByYear[year][tag] = [];
+      }
+      postsByYear[year][tag].push(id);
+    });
+  }
+
+  // Sort posts in each tag group by date (newest to oldest)
+  for (const year in postsByYear) {
+    for (const tag in postsByYear[year]) {
+      postsByYear[year][tag].sort((a, b) => b.date.localeCompare(a.date));
+    }
+  }
+
+  return postsByYear;
+}
+
 export function getSortedPostsData() {
   // Get file names under /posts
   const fileNames = fs.readdirSync(postsDirectory);
@@ -40,12 +144,20 @@ export function getSortedPostsData() {
 export function getAllPostIds() {
   const fileNames = fs.readdirSync(postsDirectory);
   let postIds = [];
+  const dateRegex = /^\d{4}-\d{2}-\d{2}$/; // Regular expression to match yyyy-mm-dd format
+
   for (const fileName of fileNames) {
     const fullPath = path.join(postsDirectory, fileName);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     // Use gray-matter to parse the post metadata section
     const matterResult = matter(fileContents);
     let { date, title } = matterResult.data;
+
+    if (!dateRegex.test(date)) {
+      console.error(`Invalid date format in file: ${fileName}`);
+      continue;
+    }
+
     let id = {
       slug: fileName.replace(/\.md$/, ''),
       title: title,
@@ -53,6 +165,8 @@ export function getAllPostIds() {
     }
     postIds.push(id)
   }
+  // Sort posts by date (newest to oldest)
+  postIds.sort((a, b) => b.date.localeCompare(a.date));
   return postIds;
 }
 

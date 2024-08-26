@@ -1,5 +1,6 @@
 import { ChatBotInfo } from "../UIChatbot";
 
+
 export const model = "fine-tuned-model-id";
 export const temperature = 0.7;
 

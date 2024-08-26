@@ -1,6 +1,6 @@
 ---
-title: 'Cấu hình CORS trong API Route của Next.js'
-date: '2024-08-20'
+title: 'Personal Finance framework'
+date: '2024-08-26'
 tags: finance
 ---
 
