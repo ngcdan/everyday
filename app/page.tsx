@@ -41,10 +41,7 @@ export default async function Page() {
           <Link className={`font-medium`} href="/dev/tools" > Tools : </Link>
           <span className=''>All the tools I use.</span>
         </li>
-        <li className="mb-2">
-          <Link className={`font-medium`} href="/looking-back" > Looking Back : </Link>
-          <span className=''> Capturing the moments of of my life's journey.</span>
-        </li>
+
       </ol>
 
       <p className="my-3">
