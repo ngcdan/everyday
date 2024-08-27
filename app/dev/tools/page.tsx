@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { HouseCalculator } from './HouseCalculator';
 import Foldable from '@/app/dev/lib/components/Foldable';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Tools',
@@ -19,9 +20,17 @@ export default function Page() {
       </div>
 
       <div className='my-8' >
-        <Foldable label='1. House Rent Calculator' defaultFolded headerCss='text-center text-xl font-bold text-gray-800 my-2'>
+
+        <div className="gap-2 ml-4 text-base text-thin">
+          <Link className={`block select-none space-y-1 rounded-full px-4 py-2`}
+            href="/dev/tools/anki">
+            Anki Maker
+          </Link>
+        </div>
+
+        {/* <Foldable label='1. House Rent Calculator' defaultFolded headerCss='text-center text-xl font-bold text-gray-800 my-2'>
           <HouseCalculator />
-        </Foldable>
+        </Foldable> */}
 
       </div>
     </div>

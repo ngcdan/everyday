@@ -30,6 +30,7 @@ export default function RootLayout({
                 width={144}
                 alt="Jesse" />
             </Link>
+
             <div className="hidden gap-2 ml-4 text-base md:flex text-thin">
               <Link
                 className={`block select-none space-y-1 rounded-full px-4 py-2
@@ -49,18 +50,12 @@ export default function RootLayout({
               <Link
                 className={`block select-none space-y-1 rounded-full px-4 py-2
                 leading-none no-underline outline-none transition-colors hover:bg-gray-300 focus:bg-gray-300`}
-                href="/everyday/quotes" >Quotes</Link>
-
-              <Link
-                className={`block select-none space-y-1 rounded-full px-4 py-2
-                leading-none no-underline outline-none transition-colors hover:bg-gray-300 focus:bg-gray-300`}
                 href="/dev/tools">Tools</Link>
 
               <Link
                 className={`block select-none space-y-1 rounded-full px-4 py-2
                 leading-none no-underline outline-none transition-colors hover:bg-gray-300 focus:bg-gray-300`}
                 href="/looking-back">Looking Back</Link>
-
             </div>
 
             <div className="flex items-center justify-end flex-1">

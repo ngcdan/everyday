@@ -7,8 +7,7 @@ import Textarea from "react-textarea-autosize";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
-import rehypeHighlight from 'rehype-highlight';// Hỗ trợ highlight code blocks
-import 'highlight.js/styles/github.css';
+import rehypeHighlight from 'rehype-highlight';
 
 export type Role = 'user' | 'system' | 'assistant' | 'function';
 

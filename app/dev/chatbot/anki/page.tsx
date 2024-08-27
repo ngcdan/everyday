@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { info, examples } from "./config";
 import { ChatInput, ChatWindow, useChat } from "../UIChatbot";
 

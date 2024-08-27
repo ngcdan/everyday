@@ -35,7 +35,7 @@ export async function createChatBotAPIHandler(config: ChatBotConfig, req: Reques
   const response: any = await openaiClient.chat.completions.create({
     model: config.model,
     stream: true,
-    messages: [...escapedMessages, ...messages],
+    messages: [...config.initMessages, ...messages],
     temperature: 1,
     top_p: 1
   });
