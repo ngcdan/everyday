@@ -45,7 +45,12 @@ export function Message({ role, content }: MessageProps) {
     <div>
       {role === 'user' ? (
         <div className={clsx("border-b py-3 chat chat-end")}>
-          <div className="chat-bubble chat-bubble-info">{content}</div>
+          <div className="chat-bubble chat-bubble-info">
+            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw, rehypeHighlight]}>
+              {content}
+            </ReactMarkdown>
+          </div>
+          {/* <div className="chat-bubble chat-bubble-info">{content}</div> */}
         </div>
       ) : (
         <div className={clsx("border-b border-gray-200 py-3 bg-gray-100")}>
