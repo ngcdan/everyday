@@ -1,5 +1,5 @@
 import { ChatBotConfig, createChatBotAPIHandler } from "@/app/api/OpenAIAPI";
-import { Flirting, learning, learning2 } from "../../prompts/prompts";
+import { Flirting, Flirting_2, learning, learning2 } from "../../prompts/prompts";
 
 // IMPORTANT! Set the runtime to edge
 export const runtime = 'edge'
@@ -10,7 +10,7 @@ export async function POST(req: Request) {
     model: 'gpt-4o-2024-08-06',
     initMessages: [{
       role: 'system',
-      content: Flirting
+      content: Flirting_2
     }]
   };
 
