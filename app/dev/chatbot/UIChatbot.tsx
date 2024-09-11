@@ -24,7 +24,7 @@ interface AvatarProps {
 export default function Avatar({ role }: AvatarProps) {
   let sourceUrl = role === 'user' ? '/images/avatar.jpg' : '/images/tommy.png';
   return (
-    <div className="avatar online mx-2">
+    <div className="mx-2 avatar online">
       <div className="w-10 rounded-full">
         <Image src={sourceUrl} alt="Role" width={30} height={30} />
       </div>
@@ -86,13 +86,13 @@ export function ChatWindow({ messages, setInput, inputRef, examples, info }: Cha
   }, [messages]);
 
   return messages.length > 0 ? (
-    <div ref={chatWindowRef} className="max-h-[70vh] max-w-screen-lg w-full overflow-y-auto">
+    <div ref={chatWindowRef} className="max-h-[75vh] max-w-screen-lg w-full overflow-y-auto">
       {messages.map((message, i) => (
         <Message key={i} role={message.role} content={message.content} />
       ))}
     </div>
   ) : (
-    <div className="max-w-screen-md mx-auto w-full border border-gray-200 rounded-md mt-15">
+    <div className="w-full max-w-screen-md mx-auto border border-gray-200 rounded-md mt-15">
       <div className="flex flex-col space-y-4 p-7 sm:p-10">
         <Image src="/images/tommy.png" alt="Red Right Hand" width={200} height={200}
           className='p-1 rounded-md shadow-md' />
@@ -130,7 +130,7 @@ export function ChatInput(props: ChatInputProps) {
   const disabled = isLoading || input.length === 0;
 
   return (
-    <div className="fixed bottom-0 max-w-screen-md w-full pb-3 space-y-3 bg-gradient-to-b from-transparent via-gray-100 to-gray-100">
+    <div className="fixed bottom-0 w-full max-w-screen-md pb-3 space-y-3 bg-gradient-to-b from-transparent via-gray-100 to-gray-100">
       <form ref={formRef} onSubmit={handleSubmit}
         className="relative px-4 pt-3 pb-2 bg-white border border-gray-200 shadow-lg rounded-xl sm:pb-3 sm:pt-4" >
 

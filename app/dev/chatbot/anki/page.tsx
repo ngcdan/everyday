@@ -15,7 +15,7 @@ export default function Chat() {
   const { messages, input, setInput, handleSubmit, isLoading } = useChat('anki/api', setAlertMessage);
 
   return (
-    <main className="flex flex-col items-center max-w-screen-lg w-full mx-auto">
+    <main className="flex flex-col items-center w-full">
       <ChatWindow messages={messages} setInput={setInput} inputRef={inputRef} examples={examples} info={info} />
       <ChatInput formRef={formRef} inputRef={inputRef}
         input={input} setInput={setInput} handleSubmit={handleSubmit} isLoading={isLoading} />
@@ -23,7 +23,7 @@ export default function Chat() {
       {alertMessage && (
         <div className="modal modal-open">
           <div className="modal-box">
-            <h3 className="font-bold text-lg">Alert</h3>
+            <h3 className="text-lg font-bold">Alert</h3>
             <p className="py-4">{alertMessage}</p>
             <div className="modal-action">
               <button className="btn" onClick={closeModal}>Close</button>
