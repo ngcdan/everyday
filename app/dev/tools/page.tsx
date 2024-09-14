@@ -2,12 +2,17 @@ import { Metadata } from 'next'
 import { HouseCalculator } from './HouseCalculator';
 import Foldable from '@/app/dev/lib/components/Foldable';
 import Link from 'next/link';
+import { fetchRevenue } from '@/app/api/lib/data';
 
 export const metadata: Metadata = {
   title: 'Tools',
 };
 
-export default function Page() {
+export default async function Page() {
+  const revenue = await fetchRevenue();
+  console.log('--------------------------------------------------------');
+  console.log(revenue);
+
   return (
     <div className='container p-4 mx-auto mt-5 md:p-6 md:mt-8'>
       <div className='w-full mb-6 md:mb-12'>
@@ -28,9 +33,9 @@ export default function Page() {
           </Link>
         </div>
 
-        {/* <Foldable label='1. House Rent Calculator' defaultFolded headerCss='text-center text-xl font-bold text-gray-800 my-2'>
+        <Foldable label='1. House Rent Calculator' defaultFolded headerCss='text-center text-xl font-bold text-gray-800 my-2'>
           <HouseCalculator />
-        </Foldable> */}
+        </Foldable>
 
       </div>
     </div>
