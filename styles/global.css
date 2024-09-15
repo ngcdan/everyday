@@ -19,6 +19,17 @@ img {
   display: block;
 }
 
+.scroll-mobile {
+  overflow-y: auto;
+}
+
+/* Ẩn cuộn trên màn hình lớn */
+@media (min-width: 640px) {
+  .scroll-mobile {
+    overflow: hidden;
+  }
+}
+
 .container {
   width: 100%;
 

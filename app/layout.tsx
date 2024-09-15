@@ -73,7 +73,7 @@ export default function RootLayout({
           </div>
         </header>
 
-        <main className="container mx-auto px-4 py-8 flex-grow overflow-y-auto" style={{ height: 'calc(100vh - 64px)' }}>
+        <main className="container mx-auto flex-grow scroll-mobile" style={{ height: 'calc(100vh - 64px)' }}>
           {children}
         </main>
 

@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Autocomplete, TextField, MenuItem } from '@mui/material';
+import {
+  Alert, Autocomplete, Button, Card, CardActions, CardContent,
+  CircularProgress, FormControl, Grid, InputLabel, MenuItem, Select, TextField
+} from '@mui/material';
 import { fetchDecks, fetchTags } from '@/app/api/anki';
 
 const Bookmarklet = () => {
   return (
-    <div className="p-4">
-      <h2 className="text-lg font-bold">Bookmarklet</h2>
+    <div className="p-1 md:p-4">
+      <h2 className="text-lg md:text-xl font-bold">Bookmarklet</h2>
       <p className="mt-2">We offer a bookmarklet so you can quickly highlight some text in your browser and go directly to suggesting cards. Drag the following link to your bookmarks:</p>
       <a
         id="bookmarklet"
@@ -24,13 +27,14 @@ interface Options {
   tags: string[];
 }
 
-const AnkiCardCreator: React.FC = () => {
+const AnkiMaker: React.FC = () => {
   const [decks, setDecks] = useState<string[]>([]);
   const [tags, setTags] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | null>(null);
 
   const [notes, setNotes] = useState<any[]>([]);
+
   const [deckName, setDeckName] = useState<string>("CS");
   const [currentTags, setCurrentTags] = useState<string[]>([]);
   const [prompt, setPrompt] = useState<string>("");
@@ -76,12 +80,8 @@ const AnkiCardCreator: React.FC = () => {
     }
   };
 
-  const handleSuggestCards = () => {
-    suggestNotes({ deckName, modelName, tags: currentTags, prompt });
-  };
-
   return (
-    <div className="container mx-auto p-4 md:p-6">
+    <div className="container mx-auto p-2 md:p-4">
       <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
         <div className="bg-gradient-to-r from-blue-500 to-purple-600 p-6 text-white">
           <h1 className="text-2xl md:text-3xl font-bold text-center mb-2">
@@ -91,85 +91,64 @@ const AnkiCardCreator: React.FC = () => {
             Create Anki cards quickly and easily using AI.
           </p>
         </div>
+        <Grid container sx={{ padding: "25px", maxWidth: 1200 }} spacing={4} justifyContent="flex-start" direction="column" >
+          {error ?
+            <Alert severity="error" sx={{ marginTop: "20px", marginLeft: "25px", width: '100%' }}>
+              Error: We can't connect to Anki using AnkiConnect.
+              Please make sure Anki is running and you have the AnkiConnect plugin enabled, and that you have set the CORS settings.
+            </Alert>
+            : <></>}
+          {suggestError ?
+            <Alert severity="error" sx={{ marginTop: "20px", marginLeft: "25px", width: '100%' }}>
+              Error: We can't connect to OpenAI. Ensure you have entered your OpenAI key correctly.
+            </Alert>
+            : <></>}
 
-        <div className="p-6 space-y-6">
-          <div className="form-control w-full flex flex-row">
-            <div className="w-1/2">
-              <label className="label">
-                <span className="label-text font-semibold">Deck</span>
-              </label>
-              <TextField
-                select
-                className="input input-bordered w-full"
-                value={deckName}
-                onChange={(e) => setDeckName(e.target.value)}
-              >
-                {decks.map((deck) => (
-                  <MenuItem key={deck} value={deck}>{deck}</MenuItem>
-                ))}
-              </TextField>
-            </div>
+          <Grid container item direction="row" spacing={2} justifyContent="flex-start">
+            <Grid item xs={12} sm={12} md={6}>
+              <FormControl fullWidth>
+                <InputLabel id="deck-label">Deck</InputLabel>
+                <Select labelId="deck-label" label="Deck" id="deck" value={deckName}
+                  onChange={e => { e.target.value && setDeckName(e.target.value) }} >
+                  {decks && decks.map(deckName =>
+                    <MenuItem key={"deck" + deckName} value={deckName}>{deckName}</MenuItem>)}
+                </Select>
+              </FormControl>
+            </Grid>
 
-            <div className="w-1/2 ml-4">
-              <label className="label">
-                <span className="label-text font-semibold">Tags</span>
-              </label>
-              <Autocomplete
-                multiple
-                id="tags"
-                options={tags}
-                value={currentTags}
-                onChange={(_, value) => setCurrentTags(value)}
-                renderInput={(params) => <TextField {...params} className="input input-bordered w-full rounded-md" />}
-                freeSolo
-              />
-            </div>
-          </div>
+            <Grid item xs={12} sm={12} md={6}>
+              <FormControl fullWidth >
+                <Autocomplete id="tags" multiple autoHighlight value={currentTags} options={tags || []}
+                  onChange={(_, value) => { value && setCurrentTags(value) }} freeSolo
+                  renderInput={(params) => <TextField label="Tags" {...params} />} />
+              </FormControl>
+            </Grid>
 
-          <div className="form-control w-full">
-            <label className="label">
-              <span className="label-text font-semibold">Prompt</span>
-            </label>
-            <TextField
-              className="input input-bordered w-full"
-              value={prompt}
-              onChange={(e) => setPrompt(e.target.value)}
-              placeholder="Enter your prompt here..."
-            />
-          </div>
+            <Grid item xs={12} sm={12} >
+              <FormControl fullWidth>
+                <TextField id="prompt" label="Prompt" placeholder='Enter your prompt here...' maxRows={10} multiline value={prompt}
+                  onChange={e => setPrompt(e.target.value)} />
+              </FormControl>
+            </Grid>
 
-          <button
-            className={`btn btn-primary w-full ${isSuggesting ? 'loading' : ''}`}
-            onClick={handleSuggestCards}
-            disabled={isSuggesting}
-          >
-            {isSuggesting ? 'Suggesting...' : 'Suggest Cards'}
-          </button>
+            <Grid item xs={12}>
+              <Button variant="outlined" color="primary" className='btn btn-primary' fullWidth disabled={isSuggesting}
+                onClick={() => suggestNotes({ deckName, modelName, tags: currentTags, prompt })}>
+                Suggest cards
+              </Button>
+            </Grid>
+          </Grid>
 
-          {loading && (
-            <div className="flex justify-center">
-              <span className="loading loading-spinner loading-lg"></span>
-            </div>
-          )}
+          <Grid container item>
+            {(loading || isSuggesting) && <CircularProgress />}
+          </Grid>
 
-          {error && (
-            <div className="alert alert-error">
-              <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-              <span>{error.message}</span>
-            </div>
-          )}
-
-          {suggestError && (
-            <div className="alert alert-error">
-              <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-              <span>{suggestError.message}</span>
-            </div>
-          )}
-
-          {notes.length > 0 && (
-            <div className="space-y-4">
-              {notes.map((note, index) => (
-                <div key={index} className="card bg-base-100 shadow-xl">
+          <Grid container item spacing={2} alignItems="stretch">
+            {notes
+              .filter(n => !n.trashed)
+              .filter(n => !n.created)
+              .map((note) =>
+                <div key={note} className="card bg-base-100 shadow-xl">
                   <div className="card-body">
                     {/* Render note content here */}
                   </div>
@@ -177,10 +156,10 @@ const AnkiCardCreator: React.FC = () => {
                     {/* Add actions for each note if needed */}
                   </div>
                 </div>
-              ))}
-            </div>
-          )}
-        </div>
+              )}
+          </Grid>
+
+        </Grid>
 
         <div className="bg-gray-100 p-6 mt-8">
           <Bookmarklet />
@@ -190,4 +169,4 @@ const AnkiCardCreator: React.FC = () => {
   );
 };
 
-export default AnkiCardCreator;
+export default AnkiMaker;

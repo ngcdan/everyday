@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Textarea from "react-textarea-autosize";
 
-export default function Chat() {
+export function TextToSpeech() {
   const [text, setText] = useState<string>("")
   const [audio, setAudio] = useState<string | null>(null)
 

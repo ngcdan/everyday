@@ -1,9 +1,9 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { info, examples } from "./config";
 import { ChatInput, ChatWindow, useChat } from "../UIChatbot";
 
-export default function Chat() {
+export default function AnkiCardGenerator() {
   const [alertMessage, setAlertMessage] = useState<string | null>(null);
 
   const closeModal = () => {
@@ -12,7 +12,7 @@ export default function Chat() {
 
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
-  const { messages, input, setInput, handleSubmit, isLoading } = useChat('anki/api', setAlertMessage);
+  const { messages, input, setInput, handleSubmit, isLoading } = useChat('chatbot/anki/api', setAlertMessage);
 
   return (
     <main className="flex flex-col items-center w-full">

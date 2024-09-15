@@ -4,7 +4,7 @@ import React, { useRef, useState } from "react";
 import { ChatInput, ChatWindow, useChat } from "../UIChatbot";
 import { info, examples } from "./config";
 
-export default function Chat() {
+export default function RedRightHand() {
   const [alertMessage, setAlertMessage] = useState<string | null>(null);
 
   const closeModal = () => {
@@ -13,7 +13,7 @@ export default function Chat() {
 
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
-  const { messages, input, setInput, handleSubmit, isLoading } = useChat('rrh/api', setAlertMessage);
+  const { messages, input, setInput, handleSubmit, isLoading } = useChat('chatbot/rrh/api', setAlertMessage);
 
   return (
     <main className="flex flex-col items-center justify-between pb-40">

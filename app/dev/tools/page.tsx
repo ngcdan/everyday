@@ -1,23 +1,29 @@
 'use client';
 import { useState } from 'react';
 import { HouseCalculator } from './HouseCalculator';
-import AnkiCardCreator from './AnkiMaker';
+import AnkiMaker from './AnkiMaker';
+import { TextToSpeech } from '../chatbot/tts/page';
+import RedRightHand from '../chatbot/rrh/page';
+import AnkiCardGenerator from '../chatbot/anki/page';
 
 type ComponentType = React.ComponentType<any>;
 
 const components: Record<string, ComponentType> = {
-  "House Calculator": HouseCalculator,
-  "Anki Maker": AnkiCardCreator,
+  "Anki Maker": AnkiMaker,
+  "House Rent Calculator": HouseCalculator,
+  "Text To Speech": TextToSpeech,
+  "Red Right Hand": RedRightHand,
+  "Anki Generator": AnkiCardGenerator,
 };
 
 export default function ToolKitPage() {
-  const [activeComponent, setActiveComponent] = useState<string>("House Calculator");
+  const [activeComponent, setActiveComponent] = useState<string>("Anki Maker");
   const ActiveComponent = components[activeComponent];
 
   return (
-    <div className="container mx-auto flex h-screen overflow-hidden bg-gray-50">
+    <div className="container mx-auto flex flex-col md:flex-row h-screen bg-gray-50">
       {/* Sidebar */}
-      <aside className="w-72 bg-white p-6 shrink-0 overflow-y-auto border-r border-gray-200 shadow-md">
+      <aside className="w-full md:w-72 text-gray-800 p-6 shrink-0 border-r border-gray-200 shadow-md rounded-lg">
         <h2 className="text-3xl font-bold mb-8 text-gray-800 border-b pb-4">Tools</h2>
         <nav>
           <ul className="space-y-2">
@@ -39,7 +45,7 @@ export default function ToolKitPage() {
       </aside>
 
       {/* Main content */}
-      <main className="flex-1 p-8 overflow-y-auto bg-white shadow-lg m-4 rounded-lg">
+      <main className="flex-1 p-2 md:p-8 shadow-lg m-0 md:m-4 md:rounded-lg text-gray-800">
         <ActiveComponent />
       </main>
     </div>
