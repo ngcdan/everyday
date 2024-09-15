@@ -1,7 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { Autocomplete, TextField } from '@mui/material';
+import { Autocomplete, TextField, MenuItem } from '@mui/material';
 import { fetchDecks, fetchTags } from '@/app/api/anki';
-import { Bookmarklet } from './UIUtils';
+
+const Bookmarklet = () => {
+  return (
+    <div className="p-4">
+      <h2 className="text-lg font-bold">Bookmarklet</h2>
+      <p className="mt-2">We offer a bookmarklet so you can quickly highlight some text in your browser and go directly to suggesting cards. Drag the following link to your bookmarks:</p>
+      <a
+        id="bookmarklet"
+        href="javascript:(function() { var selection = window.getSelection().toString(); var url = 'https://anki-card-creator.pages.dev/suggest?prompt=' + encodeURIComponent(selection); window.open(url, '_blank'); })();"
+        className="text-blue-500 underline" >
+        Suggest Anki cards
+      </a>
+    </div>
+  );
+};
 
 interface Options {
   deckName: string;
@@ -84,15 +98,16 @@ const AnkiCardCreator: React.FC = () => {
               <label className="label">
                 <span className="label-text font-semibold">Deck</span>
               </label>
-              <select
-                className="select select-bordered w-full"
+              <TextField
+                select
+                className="input input-bordered w-full"
                 value={deckName}
                 onChange={(e) => setDeckName(e.target.value)}
               >
                 {decks.map((deck) => (
-                  <option key={deck} value={deck}>{deck}</option>
+                  <MenuItem key={deck} value={deck}>{deck}</MenuItem>
                 ))}
-              </select>
+              </TextField>
             </div>
 
             <div className="w-1/2 ml-4">

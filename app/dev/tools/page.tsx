@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { HouseCalculator } from './HouseCalculator';
-import AnkiCardCreator from './anki/AnkiMaker';
+import AnkiCardCreator from './AnkiMaker';
 
 type ComponentType = React.ComponentType<any>;
 
@@ -10,7 +10,7 @@ const components: Record<string, ComponentType> = {
   "Anki Maker": AnkiCardCreator,
 };
 
-export default function Page() {
+export default function ToolKitPage() {
   const [activeComponent, setActiveComponent] = useState<string>("House Calculator");
   const ActiveComponent = components[activeComponent];
 
