@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { HouseCalculator } from './HouseCalculator';
 import AnkiMaker from './AnkiMaker';
-import { TextToSpeech } from '../chatbot/tts/page';
+import TextToSpeech from '../chatbot/tts/page';
 import RedRightHand from '../chatbot/rrh/page';
 import AnkiCardGenerator from '../chatbot/anki/page';
 
