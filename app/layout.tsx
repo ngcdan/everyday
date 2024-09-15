@@ -20,53 +20,62 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="h-full" data-theme="light">
-      <body className={`${roboto.className} antialiased grid min-h-screen grid-rows-[auto_1fr_auto] bg-background text-foreground`}>
-        <header className='sticky top-0 z-40 w-full border-b bg-background/75 backdrop-blur bg-stone-100 text-stone-700'>
-          <div className='container flex items-center h-12 p-4 mx-auto md:p-6 max-w-7xl'>
+    <html lang="en" className={`h-full ${roboto.className} antialiased`} data-theme="light">
+      <body className={`bg-gray-100 text-gray-800 min-h-screen flex flex-col bg-background text-foreground`}>
 
-            <Link className="relative w-8 h-8 mr-2" href="/">
-              <Image className='overflow-hidden rounded-full object-cover duration-300 ease-in-out group-hover:opacity-[85%]'
-                src="/images/avatar.jpg"
-                height={144}
-                width={144}
-                alt="Jesse" />
-            </Link>
+        <header className='bg-white sticky top-0 z-40 shadow-md'>
 
-            <div className="hidden gap-2 ml-4 md:flex">
-              <Link className='px-4 py-2 rounded-full hover:bg-gray-300' href="/" >Home</Link>
-              <Link className='px-4 py-2 rounded-full hover:bg-gray-300' href="/everyday/posts" >Archive</Link>
-              <Link className='px-4 py-2 rounded-full hover:bg-gray-300' href="/everyday/snippets">Snippets</Link>
-              <Link className='px-4 py-2 rounded-full hover:bg-gray-300' href="/dev/tools">Tools</Link>
-              <Link className='px-4 py-2 rounded-full hover:bg-gray-300' href="/looking-back">Looking Back</Link>
-            </div>
+          <div className='container mx-auto px-4'>
+            <div className="flex justify-between items-center py-3">
+              <div className="flex items-center">
+                <Link href="/" className="relative w-8 h-8 mr-2">
+                  <Image
+                    className='rounded-full object-cover transition-opacity duration-300 ease-in-out hover:opacity-85'
+                    src="/images/avatar.jpg"
+                    height={144}
+                    width={144}
+                    alt="Jesse"
+                  />
+                </Link>
 
-            <div className="flex items-center justify-end flex-1">
-              <nav className="flex items-center space-x-2">
+                <nav className="hidden gap-2 ml-4 md:flex">
+                  {[
+                    { href: "/", label: "Home" },
+                    { href: "/everyday/posts", label: "Archive" },
+                    { href: "/dev/tools", label: "Tools" },
+                    { href: "/looking-back", label: "Looking Back" }
+                  ].map(({ href, label }) => (
+                    <Link key={href} href={href}
+                      className='px-3 py-2 rounded-md font-medium text-gray-700 dark:text-dark-secondary hover:text-gray-900 dark:hover:text-dark-primary hover:bg-gray-100 dark:hover:bg-gray-700'>
+                      {label}
+                    </Link>
+                  ))}
+                </nav>
 
-                <a href="/" className="p-2 rounded-md hover:bg-gray-300">
-                  <Search size={24} strokeWidth={2} />
-                </a>
+              </div>
 
-                <label className="swap swap-rotate">
-                  <input type="checkbox" />
-                  <Sun size={24} className="swap-off" />
-                  <Moon size={24} className="swap-on" />
-                </label>
+              <div className="flex items-center">
+                <nav className="flex items-center space-x-2">
+                  <a href="/" className="p-2 rounded-md hover:bg-gray-300">
+                    <Search size={24} strokeWidth={2} />
+                  </a>
 
-                <MobileMenuToggle />
+                  <label className="swap swap-rotate">
+                    <input type="checkbox" />
+                    <Sun size={24} className="swap-off" />
+                    <Moon size={24} className="swap-on" />
+                  </label>
 
-                {/* <button type="button" className="p-2 rounded-md hover:bg-gray-300 md:hidden">
-                  <Menu size={24} strokeWidth={2} />
-                </button> */}
-              </nav>
+                  <MobileMenuToggle />
+                </nav>
+              </div>
             </div>
           </div>
         </header>
 
-        <div className="flex flex-col w-full h-full overflow-hidden grow">
+        <main className="container mx-auto px-4 py-8 flex-grow overflow-y-auto" style={{ height: 'calc(100vh - 64px)' }}>
           {children}
-        </div>
+        </main>
 
       </body>
     </html>

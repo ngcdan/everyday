@@ -259,8 +259,8 @@ export class HouseCalculator extends React.Component<{}, State> {
 
         </div>
 
-        <div className='mt-4 md:mt-8 overflow-x-auto'>
-          <table className='table table-auto text-center'>
+        <div className='mt-4 md:mt-8 overflow-x-auto rounded-lg'>
+          <table className='min-w-full table table-auto text-center'>
             <thead className='bg-gray-200'>
               <tr>
                 <th className='px-4 py-2 font-medium text-gray-500 uppercase tracking-wider'>Month</th>

@@ -1,43 +1,47 @@
-import { Metadata } from 'next'
+'use client';
+import { useState } from 'react';
 import { HouseCalculator } from './HouseCalculator';
-import Foldable from '@/app/dev/lib/components/Foldable';
-import Link from 'next/link';
-import { fetchRevenue } from '@/app/api/lib/data';
+import AnkiCardCreator from './anki/AnkiMaker';
 
-export const metadata: Metadata = {
-  title: 'Tools',
+type ComponentType = React.ComponentType<any>;
+
+const components: Record<string, ComponentType> = {
+  "House Calculator": HouseCalculator,
+  "Anki Maker": AnkiCardCreator,
 };
 
-export default async function Page() {
-  const revenue = await fetchRevenue();
-  console.log('--------------------------------------------------------');
-  console.log(revenue);
+export default function Page() {
+  const [activeComponent, setActiveComponent] = useState<string>("House Calculator");
+  const ActiveComponent = components[activeComponent];
 
   return (
-    <div className='container p-4 mx-auto mt-5 md:p-6 md:mt-8'>
-      <div className='w-full mb-6 md:mb-12'>
-        <h1 className='mb-2 text-3xl font-bold leading-tight tracking-tighter text-center text-balance md:mb-4 md:text-left md:text-5xl md:leading-none lg:text-6xl'>
-          Tools
-        </h1>
-        <p className='text-xl text-center text-gray-600 text-balance text-muted-foreground md:text-left md:text-2xl'>
-          All the tools I use.
-        </p>
-      </div>
+    <div className="container mx-auto flex h-screen overflow-hidden bg-gray-50">
+      {/* Sidebar */}
+      <aside className="w-72 bg-white p-6 shrink-0 overflow-y-auto border-r border-gray-200 shadow-md">
+        <h2 className="text-3xl font-bold mb-8 text-gray-800 border-b pb-4">Tools</h2>
+        <nav>
+          <ul className="space-y-2">
+            {Object.keys(components).map((componentName) => (
+              <li key={componentName}>
+                <button
+                  className={`w-full text-left py-2 px-4 rounded-lg transition-colors duration-200 ease-in-out ${activeComponent === componentName
+                    ? 'bg-blue-500 text-white shadow-md'
+                    : 'text-gray-600 hover:bg-gray-100'
+                    }`}
+                  onClick={() => setActiveComponent(componentName)}
+                >
+                  {componentName}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </aside>
 
-      <div className='my-8' >
-
-        <div className="gap-2 ml-4 text-base text-thin">
-          <Link className={`block select-none space-y-1 rounded-full px-4 py-2`}
-            href="/dev/tools/anki">
-            Anki Maker
-          </Link>
-        </div>
-
-        <Foldable label='1. House Rent Calculator' defaultFolded headerCss='text-center text-xl font-bold text-gray-800 my-2'>
-          <HouseCalculator />
-        </Foldable>
-
-      </div>
+      {/* Main content */}
+      <main className="flex-1 p-8 overflow-y-auto bg-white shadow-lg m-4 rounded-lg">
+        <ActiveComponent />
+      </main>
     </div>
   );
 }

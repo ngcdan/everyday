@@ -18,18 +18,6 @@ const config: Config = {
         ],
         mono: ['var(--font-merriweather)'],
       },
-      gridTemplateColumns: {
-        '13': 'repeat(13, minmax(0, 1fr))',
-      },
-      colors: {
-        transparent: 'transparent',
-        blue: {
-          400: '#2589FE',
-          500: '#0070F3',
-          600: '#2F6FEB',
-        },
-        accent: '#FF5733',
-      },
     },
     keyframes: {
       shimmer: {
@@ -46,15 +34,14 @@ const config: Config = {
       roman: 'upper-roman',
     }
   },
-  //plugins: [require('@tailwindcss/forms')],
   plugins: [
     daisyui,
     require('@tailwindcss/typography')
   ],
   daisyui: {
     themes: ["light", "dark", "retro"],
-    darkTheme: "retro", // name of one of the included themes for dark mode
-    base: true, // applies background color and foreground color for root element by default
+    darkTheme: "light", // name of one of the included themes for dark mode
+    base: false, // applies background color and foreground color for root element by default
     styled: true, // include daisyUI colors and design decisions for all components
     utils: true, // adds responsive and modifier utility classes
     prefix: "", // prefix for daisyUI classnames (components, modifiers and responsive class names. Not colors)
