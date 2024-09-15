@@ -91,7 +91,7 @@ export function ChatWindow({ messages, setInput, inputRef, examples, info }: Cha
   }, [messages]);
 
   return messages.length > 0 ? (
-    <div ref={chatWindowRef} className="max-h-[75vh] max-w-screen-lg w-full md:overflow-y-auto rounded-lg p-4 md:p-6 lg:p-8">
+    <div ref={chatWindowRef} className="h-full md:max-h-[75vh] max-w-screen-lg w-full rounded-lg p-4 md:p-6 lg:p-8 overflow-y-auto">
       {messages.map((message, i) => (
         <Message key={i} role={message.role} content={message.content} />
       ))}
