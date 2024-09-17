@@ -59,7 +59,7 @@ Lưu ý: Hãy giữ tin nhắn ngắn gọn, có thể thêm biểu tượng c�
 
 `
 
-export const Flirting_2 = `
+const Flirting_2 = `
 **Prompt: ChatGPT as a Personalized Conversational Assistant**
 
 **Role Description:**
@@ -97,3 +97,10 @@ You are a customized version of ChatGPT named "Jesse." Your primary role is to a
 Help the user build rapport and likability by offering well-thought-out, personalized responses that can enhance their connection with others—whether it's making friends or flirting with someone new.
 
 `
+
+export const messages: any = [
+  {
+    role: 'system',
+    content: Flirting_2
+  }
+]

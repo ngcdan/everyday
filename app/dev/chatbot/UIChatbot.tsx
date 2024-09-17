@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import { Copy } from "react-feather";
-import { useChat as useAiChat } from "ai/react";
 import { Send, Loader } from 'react-feather';
 import Image from "next/image";
 import clsx from "clsx";
@@ -9,8 +8,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import rehypeHighlight from 'rehype-highlight';
-
-export type Role = 'user' | 'system' | 'assistant' | 'function';
+import { MessageProps, Role } from "@/app/api/OpenAIAPI";
 
 export type ChatBotInfo = {
   id: string,
@@ -34,10 +32,6 @@ export default function Avatar({ role }: AvatarProps) {
 }
 
 /* ---------- Message: Displays individual messages with appropriate styling.*/
-export interface MessageProps {
-  role: Role;
-  content: string;
-}
 export function Message({ role, content }: MessageProps) {
 
   return (
@@ -175,26 +169,3 @@ export const ChatInput: React.FC<IChatInputProps> = ({ formRef, inputRef, input,
   );
 };
 
-interface UseChatResponse {
-  messages: MessageProps[];
-  input: string;
-  setInput: (value: string) => void;
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  isLoading: boolean;
-}
-
-export function useChat(api: string, setAlertMessage: (message: string) => void): UseChatResponse {
-
-  return useAiChat({
-    api,
-    onResponse: (response) => {
-      if (response.status === 429) {
-        setAlertMessage("You have reached your request limit for the day.");
-        return;
-      }
-    },
-    onError: (_error) => {
-      setAlertMessage("Your location is not supported by this service.");
-    },
-  });
-}
