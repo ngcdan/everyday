@@ -67,7 +67,22 @@ const AnkiMaker: React.FC = () => {
     }
   }, [promptParam, deckName, currentTags]);
 
+  const event = ({ action, category, label, value }: any) => {
+    (window as any).gtag('event', action, {
+      event_category: category,
+      event_label: label,
+      value: value,
+    });
+  };
+
   const suggestNotes = async (options: Options) => {
+    event({
+      action: 'suggestNotes',
+      category: 'tools',
+      label: 'Suggest Anki Notes',
+      value: '....',
+    });
+
     setIsSuggesting(true);
     setSuggestError(null);
     try {
