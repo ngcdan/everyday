@@ -1,10 +1,12 @@
 import '@/styles/global.css';
+
 import { Search, Sun, Menu, Moon } from 'react-feather';
 import { roboto } from '@/app/dev/lib/fonts';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image'
 import MobileMenuToggle from '../ui-lib/MobileMenuToggle';
+import GoogleAnalytics from '@/GoogleAnalytics';
 
 export const metadata: Metadata = {
   title: {
@@ -78,6 +80,7 @@ export default function RootLayout({
         </main>
 
       </body>
+      <GoogleAnalytics />
     </html>
   );
 }
