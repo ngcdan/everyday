@@ -1,4 +1,5 @@
 import '@/styles/global.css';
+import { Analytics } from "@vercel/analytics/react"
 
 import { Search, Sun, Menu, Moon } from 'react-feather';
 import { roboto } from '@/app/dev/lib/fonts';
@@ -80,6 +81,7 @@ export default function RootLayout({
         </main>
 
       </body>
+      <Analytics />
       <GoogleAnalytics />
     </html>
   );
