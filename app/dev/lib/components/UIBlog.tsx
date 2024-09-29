@@ -45,15 +45,17 @@ export function UIBlogContent({ title, date, contentHtml }: UIBlogContentProps) 
   }, [contentHtml]);
 
   return (
-    <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-12">
-      <header className="mb-6 sm:mb-8">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2 sm:mb-3">{title}</h1>
-        <time className="text-sm sm:text-base text-gray-600">{new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
-      </header>
-      <div
-        className="prose prose-sm sm:prose-base lg:prose-lg max-w-none converted-html"
-        dangerouslySetInnerHTML={{ __html: contentHtml }}
-      />
-    </article>
+    <div className='w-full h-full overflow-y-auto'>
+      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-12">
+        <header className="mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2 sm:mb-3">{title}</h1>
+          <time className="text-sm sm:text-base text-gray-600">{new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+        </header>
+        <div
+          className="prose prose-sm sm:prose-base lg:prose-lg max-w-none converted-html"
+          dangerouslySetInnerHTML={{ __html: contentHtml }}
+        />
+      </article>
+    </div>
   );
 }
