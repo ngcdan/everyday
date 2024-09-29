@@ -3,108 +3,91 @@ import mapbox from '@mapbox/mapbox-sdk/services/geocoding';
 
 const mapboxClient = mapbox({ accessToken: process.env.MAPBOX_ACCESS_TOKEN || '' });
 
-export function GET(_req: Request) {
-  console.log('call api/dev/route');
-  console.log(_req);
-
-  const data = { message: 'Hello from Next.js API with TypeScript!, GET' };
-  return NextResponse.json(data, { status: 200 })
-}
-
-export async function POST(_req: Request) {
-  console.log('call api/dev/route');
-  console.log(_req);
+export async function POST(req: Request) {
+  console.log('Calling api/dev/route');
   try {
-    // 1. Read data ports from `ports.json`
-    const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/data/ports.json`);
-    if (!response.ok) {
-      throw new Error('Failed to fetch ports.json');
-    }
-    const ports = await response.json();
+    const ports = await fetchPorts();
     const transformedPorts = transformPortData(ports);
 
-    // 3. Extract pickUpAddress, deliveryAddress, transportationMethod from request body
-    const { pickUpAddress, deliveryAddress } = await _req.json();
+    const { pickUpAddress, deliveryAddress } = await req.json();
     if (!pickUpAddress || !deliveryAddress) {
       throw new Error('Missing pickUpAddress or deliveryAddress in the request body');
     }
 
-    // 4. Use Mapbox Geocoding API to get coordinates
-    const pickUpResponse = await mapboxClient
-      .forwardGeocode({ query: pickUpAddress, limit: 1 })
-      .send();
-    const deliveryResponse = await mapboxClient
-      .forwardGeocode({ query: deliveryAddress, limit: 1 })
-      .send();
+    const [pickUpCoords, deliveryCoords] = await Promise.all([
+      getCoordinates(pickUpAddress),
+      getCoordinates(deliveryAddress)
+    ]);
 
-    if (!pickUpResponse.body.features.length) {
-      throw new Error(`Geocoding failed for pickUpAddress: ${pickUpAddress}`);
-    }
-    if (!deliveryResponse.body.features.length) {
-      throw new Error(`Geocoding failed for deliveryAddress: ${deliveryAddress}`);
-    }
-
-    const pickUpCoords: number[] = pickUpResponse.body.features[0].center;
-    const deliveryCoords: number[] = deliveryResponse.body.features[0].center;
-
-    // 6. Find the nearest ports
     const nearestPickUpPort = findNearestPort(pickUpCoords, transformedPorts);
     const nearestDeliveryPort = findNearestPort(deliveryCoords, transformedPorts);
+
     if (!nearestPickUpPort || !nearestDeliveryPort) {
       throw new Error('Failed to find the nearest port for the provided addresses');
     }
 
-    // 7. Return nearest route
     const data = {
       fromLocation: nearestPickUpPort,
       toLocation: nearestDeliveryPort,
     };
+
     return NextResponse.json(data, { status: 200 });
   } catch (error: any) {
-    console.error(error);
     console.error('Error in POST /api/dev/route:', error.message);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
 
-// Haversine formula to calculate distance between two coordinates
-function haversineDistance(coords1: number[], coords2: number[]): number {
-  const toRadians = (degree: number) => degree * (Math.PI / 180);
-  const R = 6371; // Earth's radius in kilometers
+async function fetchPorts() {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/data/ports.json`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch ports.json');
+  }
+  return response.json();
+}
 
-  const dLat = toRadians(coords2[1] - coords1[1]);
-  const dLon = toRadians(coords2[0] - coords1[0]);
+async function getCoordinates(address: string): Promise<number[]> {
+  const response = await mapboxClient
+    .forwardGeocode({ query: address, limit: 1 })
+    .send();
 
-  const lat1 = toRadians(coords1[1]);
-  const lat2 = toRadians(coords2[1]);
+  if (!response.body.features.length) {
+    throw new Error(`Geocoding failed for address: ${address}`);
+  }
 
-  const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return response.body.features[0].center;
+}
 
-  return R * c; // Distance in kilometers
+function transformPortData(data: any[]) {
+  return Object.entries(data).reduce((result: any[], [key, value]: [string, any]) => {
+    if (value && key && value.coordinates) {
+      result.push({
+        coordinates: value.coordinates,
+        name: value.name,
+        address: `${value.city || ''}, ${value.province || ''}, ${value.country || ''}`,
+        country: value.country || '',
+        unlocs: (value.unlocs && value.unlocs.length > 0) ? value.unlocs[0] : '',
+      });
+    }
+    return result;
+  }, []);
 }
 
 function findNearestPort(coords: number[], ports: any[]): any {
-  let nearestPort = null;
-  let minDistance = Infinity;
+  const [nearestPort, minDistance] = ports.reduce(
+    ([nearestPort, minDistance], port) => {
+      if (!port || !port.coordinates) return [nearestPort, minDistance];
+      const distance = haversineDistance(coords, port.coordinates);
+      return distance < minDistance ? [port, distance] : [nearestPort, minDistance];
+    },
+    [null, Infinity]
+  );
 
-  for (const port of ports) {
-    if (!port || !port.coordinates) continue;
-    const distance = haversineDistance(coords, port.coordinates);
-    if (distance < minDistance) {
-      minDistance = distance;
-      nearestPort = port;
-    }
-  }
+  if (!nearestPort) return null;
 
-  if (!nearestPort) {
-    return null;
-  }
-
-  const googleMapsLink = `https://www.google.com/maps/search/?api=1&query=${nearestPort.coordinates[1]},${nearestPort.coordinates[0]}`
+  const googleMapsLink = `https://www.google.com/maps/search/?api=1&query=${nearestPort.coordinates[1]},${nearestPort.coordinates[0]}`;
   const estTimeHours = minDistance / 50;
+
   return {
     ...nearestPort,
     distance: minDistance.toFixed(2),
@@ -113,28 +96,20 @@ function findNearestPort(coords: number[], ports: any[]): any {
   };
 }
 
-function transformPortData(data: any[]) {
-  const result = [];
+function haversineDistance(coords1: number[], coords2: number[]): number {
+  const toRadians = (degree: number) => degree * (Math.PI / 180);
+  const R = 6371; // Earth's radius in kilometers
 
-  for (const [key, value] of Object.entries(data)) {
-    if (!value || !key) continue;
-    const coordinates = value.coordinates || '';
-    if (!coordinates) continue;
-    const name = value.name;
-    const portAddress = `${value.city || ''}, ${value.province || ''}, ${value.country || ''}`;
-    const country = value.country || '';
-    const unlocs = (value.unlocs && value.unlocs.length > 0) ? value.unlocs[0] : '';
+  const [lon1, lat1] = coords1.map(toRadians);
+  const [lon2, lat2] = coords2.map(toRadians);
 
-    const newEntry = {
-      coordinates: coordinates,
-      name: name,
-      address: portAddress,
-      country: country,
-      unlocs: unlocs,
-    };
+  const dLat = lat2 - lat1;
+  const dLon = lon2 - lon1;
 
-    result.push(newEntry);
-  }
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) ** 2;
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-  return result;
+  return R * c; // Distance in kilometers
 }
